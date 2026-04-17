@@ -1,12 +1,13 @@
 # Structra Docs (`structra-docs`)
 
+- Acesse: [StructraLab](https://structralab.com/)
+
 Site **Angular 17** que funciona como **showcase** da biblioteca [**structra-ui**](https://www.npmjs.com/package/structra-ui) instalada pelo **npm**. Aqui não existe fork da lib: só há a app de documentação, rotas e demos que **importam e usam** o pacote publicado.
 
 ## O que este repositório é (e o que não é)
 
 - **É:** uma aplicação Angular que declara `structra-ui` no `package.json` (por exemplo `^0.1.8`) e consome componentes, serviços e utilitários **somente** por esse pacote.
 - **Não é:** o código-fonte da biblioteca — isso acompanha o ciclo de release do próprio pacote `structra-ui`.
-- Acesse: [StructraLab](https://structralab.com/)
 
 ## Instalação
 
