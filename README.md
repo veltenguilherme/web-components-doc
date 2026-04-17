@@ -1,58 +1,79 @@
 # Structra Docs (`structra-docs`)
 
-Aplicação **Angular 17** de **showcase** que consome **sempre** o pacote npm [**structra-ui**](https://www.npmjs.com/package/structra-ui) — sem `file:`, sem compilar a biblioteca a partir do monorepo.
+Site **Angular 17** que serve de **showcase** da biblioteca [**structra-ui**](https://www.npmjs.com/package/structra-ui) publicada no npm. O objetivo é mostrar o consumo real da lib (imports, providers, tema) de forma parecida com o **StructraLab**, mas em um repositório separado só da documentação/demo.
 
-A demo replica o StructraLab para validar o consumo publicado da lib.
+## O que este projeto é (e o que não é)
+
+- **É:** uma app Angular que depende de `structra-ui` via `package.json` (semver, ex.: `^0.1.7`).
+- **Não é:** o código-fonte da lib; isso fica no monorepo **StructraLab** / `web-components`.
 
 ## Pré-requisitos
 
 - **Node.js** LTS (18 ou 20 recomendado).
-- **Angular 17.3.x** alinhado às *peer dependencies* de `structra-ui`.
+- **npm** compatível com o lockfile do repositório.
+- Versões de **Angular** e de **@angular/cdk** / **@angular/material** alinhadas às *peer dependencies* declaradas no pacote `structra-ui` que você estiver usando (hoje, faixa típica **17.3.x**).
 
 ## Instalação
+
+Na pasta do repositório:
 
 ```bash
 cd web-components-doc
 npm install
 ```
 
-A dependência `structra-ui` está no `package.json` com intervalo semver (ex.: `^0.1.6`). Para actualizar:
+Isso baixa o `structra-ui` do registro npm conforme a versão indicada no `package.json`. Para atualizar só a lib:
 
 ```bash
 npm update structra-ui
 ```
 
-Consulta a versão mais recente com `npm view structra-ui version`. **≥ 0.1.6:** o `app-dialog` / `app-drawer` já não expõem `HTMLElement.title` no host — evita o tooltip nativo do browser por cima do overlay.
+Para ver a última versão publicada:
 
-### Tema global (SCSS)
+```bash
+npm view structra-ui version
+```
 
-O `angular.json` inclui o `styles.scss` completo do StructraLab a partir do repositório **irmão** `../web-components/src/styles.scss` (tokens, Material, ag-Grid, CDK, etc.). Isto **não** substitui o pacote npm: só alimenta o bundle de estilos. Para CI sem clone do monorepo ao lado, aponta esse *input* para uma cópia versionada dos SCSS ou para o caminho que a equipa definir.
+## Tema global (SCSS)
 
-## Executar
+No `angular.json`, o build inclui o **`styles.scss` completo do StructraLab** apontando para o repositório **irmão**:
+
+`../web-components/src/styles.scss`
+
+Isso traz tokens, tema Material, ag-Grid, overlays de diálogo CDK, etc. **Não substitui** o pacote npm: o `structra-ui` traz principalmente a API em TypeScript; o arquivo acima monta o **bundle de estilos** igual ao lab.
+
+Em **CI** sem o clone do monorepo ao lado, você precisa ou:
+
+- versionar uma cópia desses SCSS no próprio repo de docs e trocar o `input` no `angular.json`, ou  
+- publicar/consumir um pacote de tema, se a sua organização tiver esse fluxo.
+
+## Rodar em desenvolvimento
 
 ```bash
 npm start
 ```
 
-Por omissão: `http://localhost:4200/` — showcase de componentes na raiz.
+Por padrão o Angular sobe em **`http://localhost:4200/`**. A rota principal mostra o showcase de componentes (demo oficial espelhada em `src/app/official-demo/`).
 
-## Build
+## Build de produção
 
 ```bash
 npm run build
 ```
 
-Saída: `dist/structra-docs`.
+Artefatos em **`dist/structra-docs/`**.
 
 ## Rotas
 
-| Caminho        | Comportamento                             |
-| -------------- | ----------------------------------------- |
-| `/`            | Showcase principal (`DemoPageComponent`). |
-| `/components` | Redirecciona para `/`.                    |
-| `/home`       | Redirecciona para `/`.                    |
+| Caminho       | Comportamento |
+| ------------- | ------------- |
+| `/`           | Página única com o showcase (`DemoPageComponent`). |
+| `/components` | Redireciona para `/` (compatibilidade com links antigos). |
+| `/home`       | Redireciona para `/` (idem). |
 
-## Consumo de `structra-ui`
+## Uso da `structra-ui` neste repo
+
+Exemplo de imports (ajuste os símbolos ao que você for usar):
 
 ```ts
 import {
@@ -63,17 +84,29 @@ import {
 } from 'structra-ui';
 ```
 
-Ver `src/app/app.config.ts` (`provideAnimations()`, `MAT_DATE_LOCALE`, etc.).
+Configuração global da app: **`src/app/app.config.ts`** — por exemplo `provideAnimations()`, `MAT_DATE_LOCALE` (`pt-PT` nos exemplos atuais), e demais providers que os componentes exijam.
 
-## Estrutura (resumo)
+## Estrutura de pastas (resumo)
 
 ```
-src/app/
-  app.config.ts
-  app.routes.ts
-  official-demo/
+src/
+  app/
+    app.component.*      # shell mínimo (toast + router-outlet)
+    app.config.ts
+    app.routes.ts
+    official-demo/       # demo espelhada: abas, formulário, grid, menus, dialog, etc.
+  styles.scss            # ajustes leves só do site de docs
 ```
+
+## Scripts úteis (`package.json`)
+
+| Script   | Descrição              |
+| -------- | ---------------------- |
+| `start`  | `ng serve` (dev).      |
+| `build`  | `ng build`.            |
+| `watch`  | build em modo watch.   |
+| `test`   | testes unitários Karma.|
 
 ## Licença
 
-MIT (alinhado ao ecossistema Structra, se aplicável).
+MIT, alinhada ao ecossistema Structra quando aplicável.
