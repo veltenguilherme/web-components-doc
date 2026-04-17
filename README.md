@@ -1,38 +1,32 @@
 # Structra Docs (`structra-docs`)
 
-Projeto **Angular** de **documentação e showcase** que consome o pacote **`structra-ui`** (build ng-packagr do monorepo **StructraLab** / `web-components`).
+Aplicação **Angular 17** de **showcase** que consome **sempre** o pacote npm [**structra-ui**](https://www.npmjs.com/package/structra-ui) — sem `file:`, sem compilar a biblioteca a partir do monorepo.
 
-**Não** é o repositório da biblioteca: é uma aplicação à parte, com exemplos reais de componentes importados de `structra-ui`.
-
-## Objetivo
-
-- Demonstrar o consumo real da lib (`import { … } from 'structra-ui'`).
-- Manter layout simples (shell, rotas, home, página de componentes).
-- Servir de base para evoluir a documentação.
+A demo replica o StructraLab para validar o consumo publicado da lib.
 
 ## Pré-requisitos
 
-- **Node.js** LTS (recomendado 18 ou 20).
-- Repositório **irmão** `../web-components` (StructraLab), para:
-  - compilar a lib (`ng build structra-ui`);
-  - referenciar `structra-ui` em `file:../web-components/dist/structra-ui`;
-  - carregar o tema global em `angular.json` (`../web-components/src/styles.scss`).
+- **Node.js** LTS (18 ou 20 recomendado).
+- **Angular 17.3.x** alinhado às *peer dependencies* de `structra-ui`.
 
 ## Instalação
 
 ```bash
-cd D:\Projetos\web-components-doc
-
-# 1) Gerar o pacote local da lib (no monorepo StructraLab)
-cd ..\web-components
-npx ng build structra-ui
-cd ..\web-components-doc
-
-# 2) Instalar dependências do site de docs
+cd web-components-doc
 npm install
 ```
 
-Para publicar no npm e consumir por versão, use `npm install structra-ui@^x.y.z` e remova ou substitua a entrada `file:` em `package.json`.
+A dependência `structra-ui` está no `package.json` com intervalo semver (ex.: `^0.1.6`). Para actualizar:
+
+```bash
+npm update structra-ui
+```
+
+Consulta a versão mais recente com `npm view structra-ui version`. **≥ 0.1.6:** o `app-dialog` / `app-drawer` já não expõem `HTMLElement.title` no host — evita o tooltip nativo do browser por cima do overlay.
+
+### Tema global (SCSS)
+
+O `angular.json` inclui o `styles.scss` completo do StructraLab a partir do repositório **irmão** `../web-components/src/styles.scss` (tokens, Material, ag-Grid, CDK, etc.). Isto **não** substitui o pacote npm: só alimenta o bundle de estilos. Para CI sem clone do monorepo ao lado, aponta esse *input* para uma cópia versionada dos SCSS ou para o caminho que a equipa definir.
 
 ## Executar
 
@@ -40,7 +34,7 @@ Para publicar no npm e consumir por versão, use `npm install structra-ui@^x.y.z
 npm start
 ```
 
-Por omissão: `http://localhost:4200/`.
+Por omissão: `http://localhost:4200/` — showcase de componentes na raiz.
 
 ## Build
 
@@ -48,11 +42,17 @@ Por omissão: `http://localhost:4200/`.
 npm run build
 ```
 
-Output: `dist/structra-docs`.
+Saída: `dist/structra-docs`.
 
-## Consumo da `structra-ui`
+## Rotas
 
-### TypeScript
+| Caminho        | Comportamento                             |
+| -------------- | ----------------------------------------- |
+| `/`            | Showcase principal (`DemoPageComponent`). |
+| `/components` | Redirecciona para `/`.                    |
+| `/home`       | Redirecciona para `/`.                    |
+
+## Consumo de `structra-ui`
 
 ```ts
 import {
@@ -63,45 +63,16 @@ import {
 } from 'structra-ui';
 ```
 
-### Estilos globais
+Ver `src/app/app.config.ts` (`provideAnimations()`, `MAT_DATE_LOCALE`, etc.).
 
-Em `angular.json` → `projects.structra-docs.architect.build.options.styles` está incluído o ficheiro completo do StructraLab:
-
-`../web-components/src/styles.scss`
-
-Isto traz tokens, Material, ag-Grid e regras CDK alinhadas à demo principal. O ficheiro `src/styles.scss` deste projeto só acrescenta ajustes mínimos do site de documentação.
-
-### Peers
-
-A `structra-ui` declara peers para `@angular/forms`, `@angular/cdk`, `@angular/material`, `@angular/router` e `@angular/animations`. Mantenha as versões alinhadas (ex.: Angular 17.3.x).
-
-### `app.config.ts`
-
-- `provideAnimations()` — necessário para Material / animações.
-- `MAT_DATE_LOCALE` — definido para `pt-PT` (datas nos exemplos).
-
-## Estrutura de pastas
+## Estrutura (resumo)
 
 ```
 src/app/
-  features/
-    home/                  — início, instalação, links
-    components-showcase/   — exemplos reais (formulário, abas, resumo, etc.)
-  layout/                  — shell com `AppThemeService` + classe de tema
-  shared/components/       — `CodeSnippetComponent`
+  app.config.ts
+  app.routes.ts
+  official-demo/
 ```
-
-## Rotas
-
-| Caminho       | Conteúdo                |
-| ------------- | ----------------------- |
-| `/home`       | Home                    |
-| `/components` | Showcase com componentes |
-
-## Próximos passos
-
-- Acrescentar mais exemplos (ex.: `DropdownSearchField`, `DataGrid`, menus) à medida que forem necessários.
-- Quando a lib publicar CSS próprio no pacote npm, avaliar reduzir a dependência do `styles.scss` completo do monorepo.
 
 ## Licença
 

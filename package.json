@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "sync:lib": "npm run lib:build --prefix ../web-components && npm install",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -24,7 +23,7 @@
     "ag-grid-angular": "^31.3.4",
     "ag-grid-community": "^31.3.4",
     "rxjs": "~7.8.0",
-    "structra-ui": "file:../web-components/dist/structra-ui",
+    "structra-ui": "^0.1.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
