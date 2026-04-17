@@ -6,6 +6,7 @@ Site **Angular 17** que funciona como **showcase** da biblioteca [**structra-ui*
 
 - **É:** uma aplicação Angular que declara `structra-ui` no `package.json` (por exemplo `^0.1.8`) e consome componentes, serviços e utilitários **somente** por esse pacote.
 - **Não é:** o código-fonte da biblioteca — isso acompanha o ciclo de release do próprio pacote `structra-ui`.
+- Acesse: https://structra.com/
 
 ## Instalação
 
