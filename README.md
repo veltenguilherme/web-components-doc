@@ -2,10 +2,10 @@
 
 Site **Angular 17** que funciona como **showcase** da biblioteca [**structra-ui**](https://www.npmjs.com/package/structra-ui) instalada pelo **npm**. Aqui não existe fork da lib: só há a app de documentação, rotas e demos que **importam e usam** o pacote publicado.
 
-## O que este repositório é
+## O que este repositório é (e o que não é)
 
 - **É:** uma aplicação Angular que declara `structra-ui` no `package.json` (por exemplo `^0.1.8`) e consome componentes, serviços e utilitários **somente** por esse pacote.
-
+- **Não é:** o código-fonte da biblioteca — isso acompanha o ciclo de release do próprio pacote `structra-ui`.
 
 ## Pré-requisitos
 
@@ -18,7 +18,6 @@ Site **Angular 17** que funciona como **showcase** da biblioteca [**structra-ui*
 Na pasta do repositório:
 
 ```bash
-cd web-components-doc
 npm install
 ```
 
@@ -36,15 +35,9 @@ npm view structra-ui version
 
 ## Estilos globais (tema)
 
-Os componentes da lib precisam do **mesmo conjunto de estilos globais** que o StructraLab usa (tokens, tema Material, ag-Grid, overlays de diálogo CDK, etc.).
+Os componentes precisam dos **estilos globais** indicados na documentação do **`structra-ui`** (tokens, tema Material, ag-Grid, overlays do CDK, etc.). No `angular.json`, a lista em `styles` deve seguir o que o pacote orientar — costuma haver um ou mais arquivos SCSS/CSS de tema além do `src/styles.scss` deste site.
 
-No `angular.json` deste repo, o build pode incluir o `styles.scss` do StructraLab por **caminho relativo** para o repositório irmão:
-
-`../web-components/src/styles.scss`
-
-Isso **não substitui** o pacote npm: continua sendo só o **bundle de CSS/SCSS** para a página ficar igual ao laboratório. Quem não tiver o monorepo clonado ao lado precisa apontar o `input` para uma cópia versionada desses arquivos, para um artefato de tema da sua organização ou para o que o `structra-ui` documentar quando o tema estiver disponível só via npm.
-
-O arquivo **`src/styles.scss`** do site de docs guarda ajustes **mínimos** só da documentação (por exemplo variáveis de fundo da página), não reimplementa a lib.
+O arquivo **`src/styles.scss`** guarda só ajustes **mínimos** da própria documentação (por exemplo cores de fundo da página), sem duplicar a implementação da biblioteca.
 
 ## Rodar em desenvolvimento
 
