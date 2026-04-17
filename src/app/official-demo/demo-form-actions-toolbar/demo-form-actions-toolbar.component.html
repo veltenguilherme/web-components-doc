@@ -1,6 +1,6 @@
 <section class="demo__arena" aria-label="Demonstração de form actions e data toolbar">
   <app-form-group titulo="Form Actions / Toolbar"
-    subtitulo="Ações de formulário, barra de pesquisa e vista em lista ou grade conforme a tela."
+    subtitulo="Ações de formulário, barra de pesquisa e visualização em lista ou grade conforme a tela."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
     (collapsedChange)="collapsedChange.emit($event)">
     <div class="demo__arena-body">
@@ -44,7 +44,7 @@
         </app-form-group>
 
         <app-form-group titulo="Consulta"
-          subtitulo="Pesquisa em cima; em baixo, lista ou grade (só uma vista por vez)."
+          subtitulo="Pesquisa acima; abaixo, lista ou grade (apenas uma visualização por vez)."
           formGroupPath="consulta" [collapsible]="true" [collapsed]="true">
           <div formGroupName="consulta">
             <app-layout-stack [align]="LayoutStackAlign.Start" [stackDivider]="false" [stackFill]="false">

@@ -17,7 +17,7 @@
           >
             <h3 id="dlg-demo-dialog-title" class="demo-dialogs-notifications__section-heading">Dialog (base)</h3>
             <p class="demo-dialogs-notifications__hint">
-              <code>allowOverlayDismiss</code> (omisso: fecha com backdrop e Escape), <code>cdkTrapFocus</code>,
+              <code>allowOverlayDismiss</code> (por padrão: fecha com backdrop e Escape), <code>cdkTrapFocus</code>,
               corpo com scroll e rodapé com <code>appDialogFooter</code>.
             </p>
             <div class="demo-dialogs-notifications__row">
@@ -33,12 +33,12 @@
             <app-dialog
               [(open)]="dialogOpen"
               title="Editar preferências"
-              description="Alterações aplicam-se à sessão actual."
+              description="Alterações aplicam-se à sessão atual."
               [size]="LibDialogSize.Md"
             >
               <p>
                 Conteúdo de exemplo: texto longo para demonstrar scroll no corpo do modal quando necessário.
-                Pode projectar formulários, <code>app-details-view</code> ou qualquer marcação.
+                Pode incorporar formulários, <code>app-details-view</code> ou qualquer marcação.
               </p>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
@@ -58,7 +58,7 @@
                   [variant]="BaseButtonVariant.Primary"
                   [fullWidth]="false"
                 >
-                  Guardar
+                  Salvar
                 </app-base-button>
               </ng-container>
             </app-dialog>
@@ -75,7 +75,7 @@
             <h3 id="dlg-demo-confirm-title" class="demo-dialogs-notifications__section-heading">Confirm dialog</h3>
             <p class="demo-dialogs-notifications__hint">
               <strong>CDK Dialog</strong>; foco inicial no cancelar; por padrão Esc e backdrop fecham
-              (<code>undefined</code>); <code>blockOverlayDismiss</code> obriga aos botões; variante
+              (<code>undefined</code>); <code>blockOverlayDismiss</code> exige fechar pelos botões; variante
               <code>danger</code>.
             </p>
             <div class="demo-dialogs-notifications__row">
