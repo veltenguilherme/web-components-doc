@@ -1,0 +1,131 @@
+<section class="demo__arena" aria-label="Demonstração de loading e skeleton">
+  <app-form-group titulo="Loading / Skeleton"
+    subtitulo="Skeletons durante o carregamento (conteúdo em alternância)."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body demo-loading__body">
+      <form class="demo-loading__form" [formGroup]="form" novalidate>
+        <div class="demo-loading__column">
+          <h3 class="demo-loading__h">Data grid</h3>
+          <p class="demo-loading__p">Com <code>loading=true</code> a grade real não é montada; vê-se o skeleton
+            tabular. Ao mudar de página na paginação, esta demo liga <code>(paginationChanged)</code> a um estado de
+            carregamento com o mesmo atraso simulado.</p>
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12">
+              <app-data-grid [rows]="todasPessoas" [columns]="gridColumns" [pageSize]="10" [pagination]="true"
+                height="min(16rem, 42vh)" [loading]="gridLoading" [initialPaginationPage]="gridRestorePage"
+                emptyMessage="Sem dados." [showActionsColumn]="false"
+                (paginationChanged)="onGridPaginationChanged($event)" />
+            </app-form-col>
+          </app-form-row>
+
+          <h3 class="demo-loading__h">Card list</h3>
+          <p class="demo-loading__p">Modo <code>remote</code>: ao chegar ao fim do scroll dispara <code>loadMore</code>.
+            <code>loading</code> com lista vazia = skeleton em toda a área (inicial). <code>loadingMore</code> com itens
+            já carregados = skeleton só no fundo, sem repor o scroll.</p>
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12">
+              <app-card-list [items]="cardItems" [mapItem]="mapPessoaCard" dataMode="remote"
+                [totalCountRemote]="cardListTotal" [hasNextPage]="cardListHasNext" (loadMore)="onCardListLoadMore()"
+                [loading]="cardLoading" [loadingMore]="cardLoadingMore" [scrollBatchSize]="6" [showFooter]="true"
+                [showItemActions]="true" scrollMaxHeight="min(14rem, 38vh)" emptyMessage="Sem itens." />
+            </app-form-col>
+          </app-form-row>
+        </div>
+
+        <div class="demo-loading__column">
+          <h3 class="demo-loading__h">Campos</h3>
+          <p class="demo-loading__p">O botão <strong>Simular carregamento</strong> no fundo dispara um pedido à API:
+            grade, lista de
+            cartões e todos os campos abaixo entram em <code>loading</code> / <code>optionsLoading</code> (e paginação
+            onde aplicável), como no grupo Campos da demo principal.</p>
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12">
+              <app-dropdown-search-field formControlName="estadoBusca" id="demo-skel-estado-busca"
+                name="demoSkelEstadoBusca" label="Estado (pesquisa)" [options]="estadoBuscaOpts"
+                [pageSize]="skelPageSizeBusca" [hasMore]="estadoBuscaHasMore" [loadingMore]="estadoBuscaLoadingMore"
+                [loading]="comboboxFieldLoading" [optionsLoading]="comboboxOptionsLoading"
+                (pageRequested)="onSkelEstadosBuscaPage($event)" [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-text-field formControlName="texto" id="demo-skel-texto" name="demoSkelTexto" label="Texto"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-font" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-textarea-field formControlName="observacao" id="demo-skel-obs" name="demoSkelObs"
+                label="Observação (textarea)" [rows]="1" [maxResizeRows]="1" [loading]="inputLoading"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-align-left" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-password-field formControlName="senha" id="demo-skel-senha" name="demoSkelSenha" label="Senha"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-lock" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-integer-field formControlName="inteiro" id="demo-skel-int" name="demoSkelInt" label="Valor inteiro"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-hashtag" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-decimal-field formControlName="decimal" id="demo-skel-dec" name="demoSkelDec" label="Decimal (BR)"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-coins" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-date-field formControlName="data" id="demo-skel-data" name="demoSkelData" label="Data"
+                [showTimeHours]="true" [loading]="inputLoading" [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-calendar" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-cep-field formControlName="cep" id="demo-skel-cep" name="demoSkelCep" label="CEP"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot"
+                [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-cpf-cnpj-field formControlName="cpfCnpj" id="demo-skel-cpf" name="demoSkelCpf" label="CPF / CNPJ"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-id-card" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-phone-field formControlName="telefone" id="demo-skel-tel" name="demoSkelTel" label="Celular"
+                [loading]="inputLoading" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen"
+                [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-phone-field formControlName="telefoneFixo" id="demo-skel-tel-fixo" name="demoSkelTelFixo"
+                label="Telefone" [landline]="true" [loading]="inputLoading" [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-phone" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-select-field formControlName="select" id="demo-skel-select" name="demoSkelSelect" label="Estado (select)"
+                placeholder="Escolha o estado" [options]="estadoSelectOpts" [loading]="selectFieldLoading"
+                [pagination]="true" [pageSize]="skelPageSizeEstados" [hasMore]="estadoSelectHasMore"
+                [loadingMore]="estadoSelectLoadingMore" [optionsLoading]="selectOptionsLoading"
+                (pageRequested)="onSkelEstadosSelectPage($event)" [showPrefixIcon]="true" prefixIcon="fa-solid fa-map"
+                [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-multiselect-field formControlName="multi" id="demo-skel-multi" name="demoSkelMulti"
+                label="Estados (multiselect)" placeholder="Escolha um ou mais" [options]="estadoMultiOpts"
+                [loading]="multiFieldLoading" [pagination]="true" [pageSize]="skelPageSizeEstados"
+                [hasMore]="estadoMultiHasMore" [loadingMore]="estadoMultiLoadingMore"
+                [optionsLoading]="multiOptionsLoading" (pageRequested)="onSkelEstadosMultiPage($event)"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-map-location-dot" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <div class="demo-loading__campos-checkbox-switch">
+                <app-checkbox-field formControlName="aceite" id="demo-skel-aceite" name="demoSkelAceite"
+                  label="Li e aceito os termos do exemplo" [loading]="inputLoading" />
+                <app-switch-field formControlName="ativo" id="demo-skel-ativo" name="demoSkelAtivo" label="Ativo"
+                  [loading]="inputLoading" />
+              </div>
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-base-button [type]="BaseButtonType.Button" [fullWidth]="true" [disabled]="simulacaoEmCurso"
+                (click)="simularCarregamento()">
+                Simular carregamento
+              </app-base-button>
+            </app-form-col>
+          </app-form-row>
+        </div>
+      </form>
+    </div>
+  </app-form-group>
+</section>

@@ -1,0 +1,180 @@
+<section class="demo__arena" aria-label="Demonstração de diálogos e notificações">
+  <app-form-group
+    titulo="Dialogs &amp; Notifications"
+    subtitulo="Modais de confirmação e carregamento, diálogo declarativo e toasts no canto."
+    [collapsible]="true"
+    [skipBodyChildStacking]="true"
+    [collapsed]="collapsed"
+    (collapsedChange)="onCollapsedChange($event)"
+  >
+    <div class="demo__arena-body demo-dialogs-notifications__body">
+      <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-dialogs-notifications__panel-wrap">
+          <article
+            class="demo-dialogs-notifications__block demo-dialogs-notifications__block--tile"
+            aria-labelledby="dlg-demo-dialog-title"
+          >
+            <h3 id="dlg-demo-dialog-title" class="demo-dialogs-notifications__section-heading">Dialog (base)</h3>
+            <p class="demo-dialogs-notifications__hint">
+              <code>allowOverlayDismiss</code> (omisso: fecha com backdrop e Escape), <code>cdkTrapFocus</code>,
+              corpo com scroll e rodapé com <code>appDialogFooter</code>.
+            </p>
+            <div class="demo-dialogs-notifications__row">
+              <app-base-button
+                [type]="BaseButtonType.Button"
+                [variant]="BaseButtonVariant.Primary"
+                (click)="openDialog()"
+              >
+                Abrir dialog
+              </app-base-button>
+            </div>
+
+            <app-dialog
+              [(open)]="dialogOpen"
+              title="Editar preferências"
+              description="Alterações aplicam-se à sessão actual."
+              [size]="LibDialogSize.Md"
+            >
+              <p>
+                Conteúdo de exemplo: texto longo para demonstrar scroll no corpo do modal quando necessário.
+                Pode projectar formulários, <code>app-details-view</code> ou qualquer marcação.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor,
+                dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+              </p>
+              <ng-container appDialogFooter>
+                <app-base-button
+                  [type]="BaseButtonType.Button"
+                  [variant]="BaseButtonVariant.Secondary"
+                  [fullWidth]="false"
+                  (click)="dialogOpen = false"
+                >
+                  Cancelar
+                </app-base-button>
+                <app-base-button
+                  [type]="BaseButtonType.Button"
+                  [variant]="BaseButtonVariant.Primary"
+                  [fullWidth]="false"
+                >
+                  Guardar
+                </app-base-button>
+              </ng-container>
+            </app-dialog>
+          </article>
+          </div>
+        </app-form-col>
+
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-dialogs-notifications__panel-wrap">
+          <article
+            class="demo-dialogs-notifications__block demo-dialogs-notifications__block--tile"
+            aria-labelledby="dlg-demo-confirm-title"
+          >
+            <h3 id="dlg-demo-confirm-title" class="demo-dialogs-notifications__section-heading">Confirm dialog</h3>
+            <p class="demo-dialogs-notifications__hint">
+              <strong>CDK Dialog</strong>; foco inicial no cancelar; por padrão Esc e backdrop fecham
+              (<code>undefined</code>); <code>blockOverlayDismiss</code> obriga aos botões; variante
+              <code>danger</code>.
+            </p>
+            <div class="demo-dialogs-notifications__row">
+              <app-base-button
+                [type]="BaseButtonType.Button"
+                [variant]="BaseButtonVariant.Primary"
+                (click)="onDeleteClick()"
+              >
+                Excluir (confirmação)
+              </app-base-button>
+            </div>
+            @if (lastConfirmResult) {
+              <p class="demo-dialogs-notifications__result" role="status">{{ lastConfirmResult }}</p>
+            }
+          </article>
+          </div>
+        </app-form-col>
+
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-dialogs-notifications__panel-wrap">
+          <article
+            class="demo-dialogs-notifications__block demo-dialogs-notifications__block--tile"
+            aria-labelledby="dlg-demo-loading-title"
+          >
+            <h3 id="dlg-demo-loading-title" class="demo-dialogs-notifications__section-heading">
+              Loading dialog
+            </h3>
+            <p class="demo-dialogs-notifications__hint">
+              <code>LoadingDialogService</code> (CDK): spinner e texto personalizável; não fecha com Esc nem
+              backdrop — só <code>ref.close()</code> após a tarefa assíncrona.
+            </p>
+            <div class="demo-dialogs-notifications__row">
+              <app-base-button
+                [type]="BaseButtonType.Button"
+                [variant]="BaseButtonVariant.Primary"
+                (click)="onLoadingDemoClick()"
+              >
+                Mostrar loading (~1,5s)
+              </app-base-button>
+            </div>
+          </article>
+          </div>
+        </app-form-col>
+      </app-form-row>
+
+      <article class="demo-dialogs-notifications__block" aria-labelledby="dlg-demo-toast-title">
+        <h3 id="dlg-demo-toast-title" class="demo-dialogs-notifications__section-heading">Toast / notificação</h3>
+        <p class="demo-dialogs-notifications__hint">
+          Pilha no canto superior direito (<code>--app-z-toast</code>); animação de entrada/saída; vários
+          simultâneos.
+        </p>
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [sm]="6" [md]="3">
+            <app-base-button
+              [type]="BaseButtonType.Button"
+              [variant]="BaseButtonVariant.Secondary"
+              (click)="showSuccess()"
+            >
+              Sucesso
+            </app-base-button>
+          </app-form-col>
+          <app-form-col [xs]="12" [sm]="6" [md]="3">
+            <app-base-button
+              [type]="BaseButtonType.Button"
+              [variant]="BaseButtonVariant.Secondary"
+              (click)="showError()"
+            >
+              Erro
+            </app-base-button>
+          </app-form-col>
+          <app-form-col [xs]="12" [sm]="6" [md]="3">
+            <app-base-button
+              [type]="BaseButtonType.Button"
+              [variant]="BaseButtonVariant.Secondary"
+              (click)="showWarning()"
+            >
+              Aviso
+            </app-base-button>
+          </app-form-col>
+          <app-form-col [xs]="12" [sm]="6" [md]="3">
+            <app-base-button
+              [type]="BaseButtonType.Button"
+              [variant]="BaseButtonVariant.Secondary"
+              (click)="showInfo()"
+            >
+              Info + ação
+            </app-base-button>
+          </app-form-col>
+        </app-form-row>
+        <div class="demo-dialogs-notifications__row demo-dialogs-notifications__row--spaced">
+          <app-base-button
+            [type]="BaseButtonType.Button"
+            [variant]="BaseButtonVariant.Primary"
+            (click)="showMany()"
+          >
+            Vários toasts (pilha)
+          </app-base-button>
+        </div>
+      </article>
+    </div>
+  </app-form-group>
+</section>

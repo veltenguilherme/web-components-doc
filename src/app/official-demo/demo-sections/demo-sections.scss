@@ -1,0 +1,155 @@
+.demo__arena {
+  margin-bottom: 1.35rem;
+}
+
+.demo__arena > app-form-group {
+  display: block;
+  width: 100%;
+}
+
+.demo__arena--layout {
+  padding-top: 0.15rem;
+}
+
+.demo__arena-head {
+  margin-bottom: 1.25rem;
+}
+
+.demo__arena-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: #171717;
+}
+
+.demo__arena-lead {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.42;
+  color: #525252;
+  max-width: 44rem;
+}
+
+.demo__arena-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem 2.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+}
+
+.demo__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1 1 22rem;
+  max-width: 52rem;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.demo__form--layout {
+  max-width: 54rem;
+}
+
+/** Duas colunas; `--full` = linha inteira (textarea). */
+.demo__form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  align-items: start;
+}
+
+.demo__form-row--full {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 40rem) {
+  .demo__form-row:not(.demo__form-row--full) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.demo__preview {
+  flex: 0 1 26rem;
+  min-width: min(100%, 16rem);
+  width: 100%;
+  max-width: 32rem;
+}
+
+.demo__preview-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: #262626;
+}
+
+.demo__json {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  overflow: auto;
+  max-height: min(55vh, 28rem);
+}
+
+@media (max-width: 52rem) {
+  .demo__arena-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /*
+   * Em coluna, `flex: 1 1 22rem` no formulário fazia `flex-grow` no eixo vertical e esticava
+   * o bloco do form, empurrando «Valores» para baixo com grande vazio (resumo / abas).
+   */
+  .demo__arena-body > .demo__form {
+    flex: 0 1 auto;
+    min-height: 0;
+  }
+
+  .demo__preview {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  /* Textos das demos mais compactos em tela estreita (menos “bíblia”). */
+  .demo__arena {
+    margin-bottom: 1rem;
+  }
+
+  .demo__arena-title {
+    font-size: 1.02rem;
+  }
+
+  .demo__arena-lead {
+    font-size: 0.78rem;
+    line-height: 1.38;
+  }
+
+  .demo__preview-title {
+    font-size: 0.86rem;
+  }
+
+  .demo__json {
+    max-height: min(40vh, 22rem);
+    font-size: 0.72rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .demo__arena ::ng-deep .form-group__title {
+    font-size: 0.95rem;
+  }
+
+  .demo__arena ::ng-deep .form-group__subtitle {
+    font-size: 0.76rem;
+    line-height: 1.36;
+  }
+}

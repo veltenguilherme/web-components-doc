@@ -1,0 +1,17 @@
+/// Superfície de cartão partilhada por `app-data-card`, `app-stat-card` e shells de demo.
+/// Cópia local do monorepo oficial (identidade visual alinhada).
+@mixin data-card-shell($padding: 0.85rem 1rem) {
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid var(--app-color-border-subtle, rgba(26, 47, 69, 0.1));
+  background: var(--app-color-surface, #fff);
+  padding: $padding;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+@mixin data-card-shell-interactive-hover {
+  border-color: var(--app-color-selected-border, rgba(43, 127, 217, 0.28));
+  box-shadow: 0 1px 0 var(--app-color-border-subtle, rgba(26, 47, 69, 0.04));
+}

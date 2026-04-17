@@ -1,0 +1,10 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+/* Alinhado a `demo-resumo-validacao` / `demo__form--resumo`. */
+.demo__form--abas {
+  max-width: 48rem;
+}

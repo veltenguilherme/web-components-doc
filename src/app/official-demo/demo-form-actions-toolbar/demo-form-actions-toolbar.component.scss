@@ -1,0 +1,83 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo__form--fat {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 56rem;
+}
+
+/* `app-form-actions` delega ao `app-layout-stack`: coluna e botões à largura total. */
+:host ::ng-deep app-form-actions.demo-fat__form-actions-wide .layout-stack__track {
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+:host ::ng-deep app-form-actions.demo-fat__form-actions-wide .layout-stack__track > app-base-button {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.demo-fat__consulta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.demo-fat__toolbar-start-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.demo-fat__toolbar-fields-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.demo-fat__toolbar-field {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.demo-fat__btn-stack {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.5rem 0.75rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+:host ::ng-deep .demo-fat__btn-stack app-base-button {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  width: auto;
+}
+
+.demo-fat__adaptive {
+  display: block;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+}

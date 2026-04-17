@@ -1,0 +1,88 @@
+.demo-form-exemplo {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.demo-form-exemplo__form {
+  display: block;
+}
+
+/** Alvo do scroll ao validar com erros (evita colar ao topo da viewport). */
+.demo-form-exemplo__validation-anchor {
+  scroll-margin-top: 1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  /* Mesmo motivo que `app-validation-summary`: filho de `layout-stack` sem fill. */
+  flex: 0 0 100%;
+}
+
+.demo-form-exemplo__ctx-feedback {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--app-color-text-muted, #6b8299);
+}
+
+.demo-form-exemplo__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem 1rem;
+  margin-bottom: 0;
+  /* Ocupa toda a largura do `toolbar-start` no `app-data-toolbar`. */
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.demo-form-exemplo__toolbar-field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.demo-form-exemplo__adaptive {
+  display: block;
+}
+
+/** Separação entre o bloco de ações e a grade de contatos. */
+.demo-form-exemplo__contatos-lista {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+/** Linha + espaço extra entre a seção «Cadastro» (com divisor) e «Consulta». */
+.demo-form-exemplo__consulta-pos-cadastro {
+  margin-top: 0.2rem;
+}
+
+/** Filho de `app-layout-stack`: largura total da faixa (como o resumo de validação). */
+.demo-form-exemplo__stack-fill {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 52rem) {
+  :host ::ng-deep .form-section__title {
+    font-size: 1.1rem;
+  }
+
+  :host ::ng-deep .form-section__subtitle {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  :host ::ng-deep .form-group__title {
+    font-size: 0.95rem;
+  }
+
+  :host ::ng-deep .form-group__subtitle {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+}

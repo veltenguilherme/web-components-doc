@@ -1,0 +1,33 @@
+/**
+ * Estilos específicos do site de documentação (não duplicar o tema da lib).
+ * O tema StructraLab completo vem de `../web-components/src/styles.scss` em `angular.json`.
+ */
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: var(--doc-bg, #f6f8fb);
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  --doc-bg: #f6f8fb;
+  --doc-text: #152433;
+  --doc-muted: #4a5d72;
+  --doc-border: #dfe6ef;
+  --doc-accent: #1e5a96;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

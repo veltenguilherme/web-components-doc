@@ -1,0 +1,112 @@
+<section class="demo__arena" aria-label="Demonstração de abas com formulário">
+  <app-form-group titulo="Abas"
+    subtitulo="Formulário em separadores, com validação e estado entre abas."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body">
+      <form class="demo__form demo__form--abas" [formGroup]="form" (ngSubmit)="onValidar()">
+        <app-validation-summary title="Verifique os campos abaixo:" variant="error" [visible]="summaryVisible"
+          [items]="summaryItems" panelMaxHeight="min(36vh, 11rem)" [beforeItemActivate]="onBeforeSummaryItem"
+          [showCloseButton]="true" (panelClose)="onCloseSummaryPanel()" />
+
+        <app-form-tabs [(activeKey)]="activeTabKey" [keepAlive]="true" tablistAriaLabel="Seções do exemplo de abas">
+          <app-form-tab key="identificacao" tabTitle="Identificação" [warning]="tabWarning('identificacao')">
+            <div formGroupName="identificacao">
+              <app-form-group titulo="Identificação" subtitulo="Dados mínimos para contato."
+                formGroupPath="identificacao.contato" [uxSubmittedPass]="formSubmitAttempted"
+                [collapsible]="true" [collapsed]="false">
+                <div formGroupName="contato">
+                  <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                    <app-form-col [xs]="12" [md]="6">
+                      <app-text-field formControlName="nome" id="demo-abas-nome" name="abasNome" label="Nome completo"
+                        [required]="true" [showErrorMessage]="true" [errorMessage]="strMensagemErroNomeCompleto"
+                        [showPrefixIcon]="true" prefixIcon="fa-solid fa-user" [clearable]="true" />
+                    </app-form-col>
+                    <app-form-col [xs]="12" [md]="6">
+                      <app-text-field formControlName="email" id="demo-abas-email" name="abasEmail" label="E-mail"
+                        [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-envelope"
+                        [clearable]="true" />
+                    </app-form-col>
+                  </app-form-row>
+                </div>
+              </app-form-group>
+
+              <app-form-group titulo="Perfil"
+                subtitulo="Segundo bloco no mesmo separador."
+                formGroupPath="identificacao.perfil" [uxSubmittedPass]="formSubmitAttempted"
+                [collapsible]="true" [collapsed]="false">
+                <div formGroupName="perfil">
+                  <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                    <app-form-col [xs]="12" [md]="6">
+                      <app-text-field formControlName="cargo" id="demo-abas-cargo" name="abasCargo" label="Cargo"
+                        [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-briefcase"
+                        [clearable]="true" />
+                    </app-form-col>
+                    <app-form-col [xs]="12" [md]="6">
+                      <app-text-field formControlName="empresa" id="demo-abas-empresa" name="abasEmpresa"
+                        label="Empresa" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-building"
+                        [clearable]="true" />
+                    </app-form-col>
+                  </app-form-row>
+                </div>
+              </app-form-group>
+            </div>
+          </app-form-tab>
+
+          <app-form-tab key="preferencias" tabTitle="Preferências" [warning]="tabWarning('preferencias')">
+            <app-form-group titulo="Preferências" subtitulo="Aceite e prioridade numérica." formGroupPath="preferencias"
+              [uxSubmittedPass]="formSubmitAttempted" [collapsible]="true" [collapsed]="false">
+              <div formGroupName="preferencias">
+                <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                  <app-form-col [xs]="12" [md]="6">
+                    <app-checkbox-field formControlName="aceite" id="demo-abas-aceite" name="abasAceite"
+                      label="Li e aceito as condições" [required]="true" />
+                  </app-form-col>
+                  <app-form-col [xs]="12" [md]="6">
+                    <app-integer-field formControlName="prioridade" id="demo-abas-prioridade" name="abasPrioridade"
+                      label="Prioridade (1–5)" [required]="true" [showPrefixIcon]="true"
+                      prefixIcon="fa-solid fa-hashtag" [clearable]="true" />
+                  </app-form-col>
+                </app-form-row>
+              </div>
+            </app-form-group>
+          </app-form-tab>
+
+          <app-form-tab key="complemento" tabTitle="Complemento" [warning]="tabWarning('complemento')">
+            <app-form-group titulo="Complemento" subtitulo="Observações e contato." formGroupPath="complemento"
+              [uxSubmittedPass]="formSubmitAttempted" [collapsible]="true" [collapsed]="false">
+              <div formGroupName="complemento">
+                <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                  <app-form-col [xs]="12" [md]="6">
+                    <app-phone-field formControlName="telefone" id="demo-abas-telefone" name="abasTelefone"
+                      label="Telefone" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-phone" />
+                  </app-form-col>
+                  <app-form-col [xs]="12" [md]="6">
+                    <app-textarea-field formControlName="observacoes" id="demo-abas-observacoes" name="abasObservacoes"
+                      label="Observações" [required]="true" [showPrefixIcon]="true"
+                      prefixIcon="fa-solid fa-align-left" />
+                  </app-form-col>
+                </app-form-row>
+              </div>
+            </app-form-group>
+          </app-form-tab>
+        </app-form-tabs>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12">
+            <app-layout-stack [stackDivider]="true" [align]="LayoutStackAlign.End">
+              <app-base-button [type]="BaseButtonType.Submit" [fullWidth]="true">
+                Validar
+              </app-base-button>
+            </app-layout-stack>
+          </app-form-col>
+        </app-form-row>
+      </form>
+
+      <section class="demo__preview" aria-label="Valores do formulário de abas">
+        <h3 class="demo__preview-title">Valores</h3>
+        <pre class="demo__json">{{ form.value | json }}</pre>
+      </section>
+    </div>
+  </app-form-group>
+</section>

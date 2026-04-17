@@ -1,0 +1,61 @@
+<main class="demo app-library-theme" [ngClass]="libTheme.themeClass()">
+  <header class="demo__hero">
+    <h1 class="demo__title">Structra Docs</h1>
+  </header>
+
+  <app-form-tabs class="demo__principal-tabs" [(activeKey)]="demoPrincipalTabKey" [keepAlive]="false"
+    tablistAriaLabel="Áreas da demonstração">
+    <app-form-tab key="componentes" tabTitle="Componentes">
+      <div class="demo__tab-panel">
+        <app-demo-campos [collapsed]="demoArenaCollapsedState(DemoArenaSecao.Campos)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.Campos, $event)" [estados]="estadosBindings"
+          (estadosPage)="onEstadosPage($event)" (estadosBuscaPage)="onEstadosBuscaPage($event)" />
+
+        <app-demo-grupos [collapsed]="demoArenaCollapsedState(DemoArenaSecao.GruposLayout)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.GruposLayout, $event)" [estados]="estadosBindings"
+          (estadosPage)="onEstadosPage($event)" (estadosBuscaPage)="onEstadosBuscaPage($event)" />
+
+        <app-demo-resumo-validacao [collapsed]="demoArenaCollapsedState(DemoArenaSecao.ResumoValidacao)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.ResumoValidacao, $event)" />
+
+        <app-demo-abas [collapsed]="demoArenaCollapsedState(DemoArenaSecao.Abas)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.Abas, $event)" />
+
+        <app-demo-grid [collapsed]="demoArenaCollapsedState(DemoArenaSecao.Grid)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.Grid, $event)" />
+
+        <app-demo-card-list [collapsed]="demoArenaCollapsedState(DemoArenaSecao.CardList)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.CardList, $event)" />
+
+        <app-demo-form-actions-toolbar [collapsed]="demoArenaCollapsedState(DemoArenaSecao.FormActionsToolbar)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.FormActionsToolbar, $event)" />
+
+        <app-demo-loading-skeleton [collapsed]="demoArenaCollapsedState(DemoArenaSecao.LoadingSkeleton)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.LoadingSkeleton, $event)" />
+
+        <app-demo-menus [collapsed]="demoArenaCollapsedState(DemoArenaSecao.Menus)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.Menus, $event)" [estados]="estadosBindings"
+          (estadosPage)="onEstadosPage($event)" (estadosBuscaPage)="onEstadosBuscaPage($event)" />
+
+        <app-demo-overlay [collapsed]="demoArenaCollapsedState(DemoArenaSecao.Overlay)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.Overlay, $event)" />
+
+        <app-demo-dialogs-notifications [collapsed]="demoArenaCollapsedState(DemoArenaSecao.DialogsNotifications)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.DialogsNotifications, $event)" />
+
+        <app-demo-app-shell [collapsed]="demoArenaCollapsedState(DemoArenaSecao.AppShell)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.AppShell, $event)" />
+
+        <app-demo-data-display [collapsed]="demoArenaCollapsedState(DemoArenaSecao.DataDisplay)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.DataDisplay, $event)" />
+
+        <app-demo-tema [collapsed]="demoArenaCollapsedState(DemoArenaSecao.Tema)"
+          (collapsedChange)="onDemoArenaCollapsed(DemoArenaSecao.Tema, $event)" />
+      </div>
+    </app-form-tab>
+
+    <app-form-tab key="formulario" tabTitle="Formulário de exemplo">
+      <app-demo-formulario-exemplo [estados]="estadosBindings" (estadosPage)="onEstadosPage($event)" />
+    </app-form-tab>
+  </app-form-tabs>
+</main>

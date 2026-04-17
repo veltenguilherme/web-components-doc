@@ -1,0 +1,58 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo-loading__body {
+  max-width: 72rem;
+}
+
+.demo-loading__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.demo-loading__column {
+  flex: 1 1 18rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.demo-loading__h {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #171717;
+}
+
+.demo-loading__p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #525252;
+  max-width: 40rem;
+}
+
+.demo-loading__p code {
+  font-size: 0.8rem;
+}
+
+/**
+ * Checkbox à esquerda, switch à direita na mesma linha.
+ * Os hosts dos campos usam `width: 100%`; em flex cada um ocupava uma linha inteira.
+ * Grid `1fr` + `auto` fixa o switch na coluna da direita sem depender de `space-between`.
+ */
+.demo-loading__campos-checkbox-switch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 1rem;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -1,0 +1,222 @@
+<section class="demo__arena" aria-label="Demonstração de menus">
+  <app-form-group titulo="Menus"
+    subtitulo="Menus em botão, «…», clique direito e drawer — o mesmo modelo em todos."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body demo-menus__body">
+      <p class="demo__arena-lead demo-menus__lead">
+        Última ação: <strong>{{ lastAction }}</strong>
+      </p>
+
+      <app-form-row [gap]="FormRowGap.Lg" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-menus__block">
+            <h3 class="demo-menus__block-title">Dropdown</h3>
+            <p class="demo-menus__hint">Menu de ações ancorado ao botão.</p>
+            <div class="demo-menus__block-content">
+              <app-dropdown-menu [items]="dropdownItems" [placement]="MenuDropdownPlacement.Below" [minWidthPx]="220"
+                menuId="demo-dd-acoes" (itemSelect)="onMenuSelect($event)">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                  Ações
+                </app-base-button>
+              </app-dropdown-menu>
+            </div>
+          </div>
+        </app-form-col>
+
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-menus__block">
+            <h3 class="demo-menus__block-title">Menu contextual</h3>
+            <p class="demo-menus__hint">Clique com o botão direito na área abaixo.</p>
+            <div class="demo-menus__block-content demo-menus__block-content--grow">
+              <app-context-menu [items]="contextItems" menuId="demo-ctx-area" (itemSelect)="onMenuSelect($event)">
+                <div class="demo-menus__ctx-target" tabindex="0" role="region" aria-label="Área de menu contextual">
+                  Área de exemplo — botão direito para abrir o menu.
+                </div>
+              </app-context-menu>
+            </div>
+          </div>
+        </app-form-col>
+
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-menus__block">
+            <h3 class="demo-menus__block-title">Drawer</h3>
+            <p class="demo-menus__hint">Painel lateral com cabeçalho, conteúdo e rodapé opcional.</p>
+            <div class="demo-menus__block-content">
+              <app-layout-stack [align]="LayoutStackAlign.Start" [stackDivider]="false" [stackFill]="false">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Primary" (click)="openDrawer()">
+                  Abrir drawer
+                </app-base-button>
+              </app-layout-stack>
+            </div>
+
+            <app-drawer [(open)]="drawerOpen" [side]="DrawerSide.Right" [size]="DrawerSize.Md" title="Detalhes rápidos">
+              <p class="demo-menus__drawer-copy">
+                Use para filtros, detalhes ou edição lateral. O fundo escurece suavemente; clique fora,
+                no fechar ou <kbd>Esc</kbd> para sair.
+              </p>
+              <button type="button" appDrawerFooter class="demo-menus__drawer-footer-btn" (click)="drawerOpen = false">
+                Feito
+              </button>
+            </app-drawer>
+          </div>
+        </app-form-col>
+      </app-form-row>
+
+      <app-form-row [gap]="FormRowGap.Lg" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-menus__block">
+            <h3 class="demo-menus__block-title">Action menu</h3>
+            <p class="demo-menus__hint">
+              Especialização do dropdown com trigger «…»; itens com <code>danger</code>, <code>disabled</code> e
+              <code>loading</code>.
+            </p>
+            <div class="demo-menus__block-content">
+              <app-action-menu [items]="actionMenuDemoItems" menuId="demo-action-menu"
+                (itemSelect)="onMenuSelect($event)" />
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-menus__block">
+            <h3 class="demo-menus__block-title">Grupos e divisores</h3>
+            <p class="demo-menus__hint">
+              Seções com título (<code>kind: 'group'</code>) e <code>app-menu-divider</code> no mesmo modelo de dados.
+            </p>
+            <div class="demo-menus__block-content">
+              <app-dropdown-menu [items]="groupedMenuDemoItems" [placement]="MenuDropdownPlacement.Below"
+                [minWidthPx]="240" menuId="demo-grupos" (itemSelect)="onMenuSelect($event)">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  Grupos
+                </app-base-button>
+              </app-dropdown-menu>
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-menus__block">
+            <h3 class="demo-menus__block-title">Submenus</h3>
+            <p class="demo-menus__hint">
+              <code>kind: 'submenu'</code> com níveis recursivos; hover com atraso, setas ←/→ e Escape a fechar tudo.
+            </p>
+            <div class="demo-menus__block-content">
+              <app-dropdown-menu [items]="submenuDemoItems" [placement]="MenuDropdownPlacement.Below" [minWidthPx]="220"
+                menuId="demo-submenu" (itemSelect)="onMenuSelect($event)">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
+                  Submenus
+                </app-base-button>
+              </app-dropdown-menu>
+            </div>
+          </div>
+        </app-form-col>
+      </app-form-row>
+
+      <div class="demo-menus__campos-ctx">
+        <h3 class="demo-menus__campos-ctx-title">Campos com menu no sufixo (…)</h3>
+        <p class="demo-menus__campos-ctx-lead">
+          Todos os tipos de campo que usam <code>app-base-field</code> podem mostrar o botão «…» à direita
+          (<code>mostrarMenuContexto</code>, predefinição <code>false</code>). O conteúdo é
+          <code>contextMenuItems: MenuNodeItem[]</code> — o mesmo modelo dos cartões acima (dropdown com grupos,
+          action com <code>danger</code>/<code>loading</code>, grupos + divisores, submenus). Abaixo cada campo usa
+          um dos quatro presets para demonstrar que o sufixo aceita a árvore completa.
+        </p>
+
+        <form class="demo-menus__form-ctx" [formGroup]="formCtx" novalidate>
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12">
+              <app-dropdown-search-field formControlName="estadoBusca" id="demo-menu-ctx-estado-busca"
+                name="demoMenuCtxEstadoBusca" label="Estado (pesquisa)" [options]="estados.buscaEstadoOptions"
+                [pageSize]="estados.pageSizeBusca" [hasMore]="estados.buscaEstadosHasMore"
+                [loadingMore]="estados.buscaEstadosLoading" [optionsLoading]="estados.buscaEstadosLoading"
+                (pageRequested)="estadosBuscaPage.emit($event)" [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" [mostrarMenuContexto]="true"
+                [contextMenuItems]="ctxMenuCampoDropdown"
+                (contextMenuSelect)="onCampoContextSelect('estadoBusca', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-text-field formControlName="texto" id="demo-menu-ctx-texto" name="demoMenuCtxTexto" label="Texto"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-font" [clearable]="true" [mostrarMenuContexto]="true"
+                [contextMenuItems]="ctxMenuCampoAction" (contextMenuSelect)="onCampoContextSelect('texto', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-password-field formControlName="senha" id="demo-menu-ctx-senha" name="demoMenuCtxSenha" label="Senha"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-lock" [clearable]="true" [mostrarMenuContexto]="true"
+                [contextMenuItems]="ctxMenuCampoGrouped" (contextMenuSelect)="onCampoContextSelect('senha', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-textarea-field formControlName="observacao" id="demo-menu-ctx-obs" name="demoMenuCtxObs"
+                label="Observação (textarea)" [rows]="2" [showPrefixIcon]="true" prefixIcon="fa-solid fa-align-left"
+                [clearable]="true" [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoSubmenu"
+                (contextMenuSelect)="onCampoContextSelect('observacao', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-integer-field formControlName="inteiro" id="demo-menu-ctx-int" name="demoMenuCtxInt"
+                label="Valor inteiro" [showPrefixIcon]="true" prefixIcon="fa-solid fa-hashtag" [clearable]="true"
+                [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoDropdown"
+                (contextMenuSelect)="onCampoContextSelect('inteiro', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-decimal-field formControlName="decimal" id="demo-menu-ctx-dec" name="demoMenuCtxDec"
+                label="Decimal (BR)" [showPrefixIcon]="true" prefixIcon="fa-solid fa-coins" [clearable]="true"
+                [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoAction"
+                (contextMenuSelect)="onCampoContextSelect('decimal', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-date-field formControlName="data" id="demo-menu-ctx-data" name="demoMenuCtxData" label="Data"
+                [showTimeHours]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-calendar" [clearable]="true"
+                [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoGrouped"
+                (contextMenuSelect)="onCampoContextSelect('data', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-cep-field formControlName="cep" id="demo-menu-ctx-cep" name="demoMenuCtxCep" label="CEP"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot" [clearable]="true"
+                [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoSubmenu"
+                (contextMenuSelect)="onCampoContextSelect('cep', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-cpf-cnpj-field formControlName="cpfCnpj" id="demo-menu-ctx-cpf" name="demoMenuCtxCpf"
+                label="CPF / CNPJ" [showPrefixIcon]="true" prefixIcon="fa-solid fa-id-card" [clearable]="true"
+                [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoDropdown"
+                (contextMenuSelect)="onCampoContextSelect('cpfCnpj', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-phone-field formControlName="telefone" id="demo-menu-ctx-tel" name="demoMenuCtxTel" label="Celular"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen" [clearable]="true"
+                [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoAction"
+                (contextMenuSelect)="onCampoContextSelect('telefone', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-phone-field formControlName="telefoneFixo" id="demo-menu-ctx-tel-fixo" name="demoMenuCtxTelFixo"
+                label="Telefone" [landline]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-phone"
+                [clearable]="true" [mostrarMenuContexto]="true" [contextMenuItems]="ctxMenuCampoGrouped"
+                (contextMenuSelect)="onCampoContextSelect('telefoneFixo', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-select-field formControlName="select" id="demo-menu-ctx-select" name="demoMenuCtxSelect"
+                label="Estado (select)" placeholder="Escolha o estado" [options]="estados.estadoOptions"
+                [pagination]="true" [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+                [loading]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-map" [clearable]="true" [mostrarMenuContexto]="true"
+                [contextMenuItems]="ctxMenuCampoSubmenu" (contextMenuSelect)="onCampoContextSelect('select', $event)" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-multiselect-field formControlName="multi" id="demo-menu-ctx-multi" name="demoMenuCtxMulti"
+                label="Estados (multiselect)" placeholder="Escolha um ou mais" [options]="estados.estadoOptions"
+                [pagination]="true" [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+                [loading]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-map-location-dot" [clearable]="true" [mostrarMenuContexto]="true"
+                [contextMenuItems]="ctxMenuCampoDropdown" (contextMenuSelect)="onCampoContextSelect('multi', $event)" />
+            </app-form-col>
+          </app-form-row>
+        </form>
+      </div>
+    </div>
+  </app-form-group>
+</section>

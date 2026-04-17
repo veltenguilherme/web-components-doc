@@ -1,0 +1,71 @@
+<section class="demo__arena" aria-label="Demonstração App Shell e navegação">
+  <app-form-group titulo="App Shell &amp; navegação"
+    subtitulo="Layout com barra lateral, topo e migalhas. No celular o menu abre num painel lateral."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="onCollapsedChange($event)">
+    <div class="demo__arena-body demo-app-shell__body">
+      <p class="demo__arena-lead demo-app-shell__lead">
+        Última navegação: <strong>{{ lastNavAction }}</strong> · Menu do usuário:
+        <strong>{{ lastUserAction }}</strong>
+      </p>
+
+      <p class="demo-app-shell__hint">
+        Abaixo de 768px use «Menu» na barra superior para abrir a navegação. No desktop, as setas no topo da lateral
+        recolhem ou alargam o menu.
+      </p>
+
+      <div class="demo-app-shell__shell-wrap">
+        <app-shell #shellRef="appShell" [(sidebarCollapsed)]="sidebarCollapsed" [(mobileNavOpen)]="mobileNavOpen"
+          class="demo-app-shell__shell">
+          <ng-template appShellSidebar>
+            <app-sidebar [items]="shellNavItems" [selectedItemId]="shellActiveNav" [collapsed]="sidebarCollapsed"
+              menuId="demo-shell-nav" (itemSelect)="onShellNav($event)">
+              <app-shell-sidebar-toggle
+                appSidebarToolbar
+                class="demo-app-shell__sidebar-collapse"
+                [collapsed]="sidebarCollapsed"
+                expandLabel="Expandir navegação lateral"
+                collapseLabel="Recolher navegação lateral"
+                (toggle)="shellRef.toggleSidebarCollapsed()"
+              />
+            </app-sidebar>
+          </ng-template>
+
+          <div appShellTopbar>
+            <app-topbar>
+              <app-layout-stack appTopbarStart [align]="LayoutStackAlign.Start" [stackFill]="false">
+                <app-base-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Secondary"
+                  class="demo-app-shell__menu-btn" [attr.aria-expanded]="mobileNavOpen"
+                  aria-label="Abrir ou fechar navegação" (click)="shellRef.toggleMobileNav()">
+                  <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                  Menu
+                </app-base-button>
+              </app-layout-stack>
+
+              <h1 appTopbarTitle class="demo-app-shell__page-title">Página de exemplo</h1>
+
+              <app-layout-stack appTopbarEnd [align]="LayoutStackAlign.End" [stackFill]="false">
+                <app-user-menu [items]="userMenuItems" menuId="demo-user-menu" displayName="João"
+                  (itemSelect)="onUserMenu($event)" />
+              </app-layout-stack>
+            </app-topbar>
+          </div>
+
+          <div class="demo-app-shell__page">
+            <app-breadcrumb [items]="breadcrumbItems" />
+            <div class="demo-app-shell__fake-content">
+              <p>
+                Conteúdo principal simulado. O item ativo na sidebar segue
+                <code>selectedItemId</code> ({{ shellActiveNav }}).
+              </p>
+              <p>
+                O menu do usuário reutiliza <code>app-dropdown-menu</code>; a sidebar reutiliza
+                <code>app-menu-list</code> com grupos e submenu.
+              </p>
+            </div>
+          </div>
+        </app-shell>
+      </div>
+    </div>
+  </app-form-group>
+</section>

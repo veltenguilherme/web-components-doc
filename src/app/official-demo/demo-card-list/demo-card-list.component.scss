@@ -1,0 +1,26 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo__form--card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 56rem;
+}
+
+.demo__card-list-in-cadastro {
+  display: block;
+  margin-top: 0.25rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.demo__card-list-in-consulta {
+  display: block;
+  margin-top: 0.25rem;
+  width: 100%;
+  max-width: 100%;
+}

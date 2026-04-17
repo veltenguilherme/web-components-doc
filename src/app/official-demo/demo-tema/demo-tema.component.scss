@@ -1,0 +1,72 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo-tema__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.demo-tema__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.demo-tema__p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--app-color-text-muted, #525252);
+  max-width: 52rem;
+}
+
+.demo-tema__p code {
+  font-size: 0.82em;
+  padding: 0.08rem 0.28rem;
+  border-radius: 4px;
+  background: var(--app-color-disabled-bg, #f5f5f5);
+}
+
+.demo-tema__toolbar-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.demo-tema__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.demo-tema__toolbar {
+  display: block;
+}
+
+.demo-tema__toolbar-field {
+  max-width: 20rem;
+}
+
+.demo-tema__tabs {
+  display: block;
+}
+
+.demo-tema__h {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--app-color-text-primary, inherit);
+}
+
+@media (min-width: 64rem) {
+  .demo-tema__toolbar-themes {
+    flex-wrap: nowrap;
+  }
+}

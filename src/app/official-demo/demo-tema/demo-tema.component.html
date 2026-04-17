@@ -1,0 +1,88 @@
+<section class="demo__arena" aria-label="Demonstração de temas">
+  <app-form-group titulo="Tema"
+    subtitulo="Cores por tokens; escolha um tema e veja campos, abas e grade a seguirem a paleta."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body demo-tema__body">
+      <div class="demo-tema__intro">
+        <p class="demo-tema__p">
+          Os temas mudam tokens globais; os campos e a grade abaixo refletem a paleta ativa.
+        </p>
+        <div class="demo-tema__toolbar-themes" role="group" aria-label="Selecionar tema">
+          @for (opt of themeIds; track opt.id) {
+          <app-base-button [type]="BaseButtonType.Button" class="demo-tema__theme-btn" [fullWidth]="false"
+            [variant]="theme.isActive(opt.id) ? BaseButtonVariant.Primary : BaseButtonVariant.Secondary"
+            (click)="setTheme(opt.id)">
+            {{ opt.label }}
+          </app-base-button>
+          }
+        </div>
+      </div>
+
+      <form class="demo-tema__form" [formGroup]="showcaseForm" novalidate (ngSubmit)="$event.preventDefault()">
+        <app-form-tabs class="demo-tema__tabs" [(activeKey)]="primaryTabKey" [stretch]="true"
+          tablistAriaLabel="Separadores do exemplo de tema">
+          <app-form-tab key="a" tabTitle="Separador A">
+            <app-text-field formControlName="tabA" id="demo-tema-tab-a" name="demoTemaTabA" label="Campo na aba A"
+              [clearable]="true" />
+          </app-form-tab>
+          <app-form-tab key="b" tabTitle="Separador B">
+            <app-text-field formControlName="tabB" id="demo-tema-tab-b" name="demoTemaTabB" label="Campo na aba B"
+              [clearable]="true" />
+          </app-form-tab>
+        </app-form-tabs>
+
+        <app-form-group titulo="Campos de exemplo"
+          subtitulo="Normal, só leitura, desligado e inválido — o último campo começa em erro de propósito."
+          [collapsible]="false" [foldable]="false">
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12" [md]="6">
+              <app-integer-field formControlName="quantidade" id="demo-tema-qty" name="demoTemaQty" label="Quantidade"
+                [required]="true" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-select-field formControlName="estado" id="demo-tema-estado" name="demoTemaEstado" label="Estado"
+                placeholder="Escolha" [options]="estadoOpts" [required]="true" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-multiselect-field formControlName="segmentos" id="demo-tema-seg" name="demoTemaSeg" label="Segmentos"
+                [options]="segmentoOpts" [clearable]="true" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-text-field formControlName="readonlyCampo" id="demo-tema-ro" name="demoTemaRo" label="Só leitura"
+                [readonly]="true" [clearable]="false" />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-text-field formControlName="disabledCampo" id="demo-tema-dis" name="demoTemaDis"
+                label="Desativado" />
+            </app-form-col>
+            <app-form-col [xs]="12">
+              <app-text-field formControlName="invalido" id="demo-tema-invalido" name="demoTemaInv"
+                label="Campo inválido (obrigatório vazio)" [required]="true" [showErrorMessage]="true" />
+            </app-form-col>
+          </app-form-row>
+        </app-form-group>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [lg]="6">
+            <h3 class="demo-tema__h">Grid</h3>
+            <app-data-grid [rows]="gridRows" [columns]="gridColumns" [pageSize]="5" [pagination]="true"
+              height="min(11rem, 32vh)" [showActionsColumn]="false" emptyMessage="Sem linhas." />
+          </app-form-col>
+          <app-form-col [xs]="12" [lg]="6">
+            <h3 class="demo-tema__h">Card list</h3>
+            <app-card-list [items]="cardItems" [mapItem]="cardMap" [showFooter]="true" [showItemActions]="false"
+              scrollMaxHeight="min(11rem, 32vh)" [scrollBatchSize]="6" dataMode="memory" emptyMessage="Sem itens." />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-actions [align]="FormActionsAlign.End" [divider]="true">
+          <app-base-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Secondary"
+            [fullWidth]="false">Secundário</app-base-button>
+          <app-base-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Primary"
+            [fullWidth]="false">Primário</app-base-button>
+        </app-form-actions>
+      </form>
+    </div>
+  </app-form-group>
+</section>

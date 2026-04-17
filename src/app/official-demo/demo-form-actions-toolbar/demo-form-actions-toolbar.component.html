@@ -1,0 +1,92 @@
+<section class="demo__arena" aria-label="Demonstração de form actions e data toolbar">
+  <app-form-group titulo="Form Actions / Toolbar"
+    subtitulo="Ações de formulário, barra de pesquisa e vista em lista ou grade conforme a tela."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body">
+      <form #formDir="ngForm" class="demo__form demo__form--fat" [formGroup]="form"
+        (ngSubmit)="onAdicionarOuSalvar()" novalidate>
+        <app-form-group titulo="Cadastro" subtitulo="Incluir ou editar com validação e botões agrupados."
+          formGroupPath="pessoa" [collapsible]="true" [collapsed]="false">
+          <div formGroupName="pessoa">
+            <app-layout-stack [align]="LayoutStackAlign.Start" [stackDivider]="false" [stackFill]="false">
+              <app-validation-summary title="Verifique os campos abaixo:" variant="error" [visible]="summaryVisible"
+                [items]="summaryItems" panelMaxHeight="min(32vh, 10rem)" [showCloseButton]="true"
+                (panelClose)="onCloseSummaryPanel()" />
+
+              <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                <app-form-col [xs]="12" [md]="6">
+                  <app-text-field formControlName="nome" id="demo-fat-nome" name="fatNome" label="Nome"
+                    [required]="true" [showErrorMessage]="true" errorMessage="Nome é obrigatório."
+                    [showPrefixIcon]="true" prefixIcon="fa-solid fa-user" [clearable]="true" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="6">
+                  <app-text-field formControlName="sobrenome" id="demo-fat-sobrenome" name="fatSobrenome"
+                    label="Sobrenome" [required]="true" [showErrorMessage]="true"
+                    errorMessage="Sobrenome é obrigatório." [showPrefixIcon]="true"
+                    prefixIcon="fa-solid fa-user-tag" [clearable]="true" />
+                </app-form-col>
+              </app-form-row>
+
+              <app-form-actions class="demo-fat__form-actions-wide" [align]="FormActionsAlign.Start"
+                [fill]="false" [divider]="false">
+                <app-base-button [type]="BaseButtonType.Submit">
+                  {{ primaryButtonLabel }}
+                </app-base-button>
+                @if (editingId != null) {
+                <app-base-button [type]="BaseButtonType.Button" (click)="cancelarEdicao()">
+                  Cancelar
+                </app-base-button>
+                }
+              </app-form-actions>
+            </app-layout-stack>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Consulta"
+          subtitulo="Pesquisa em cima; em baixo, lista ou grade (só uma vista por vez)."
+          formGroupPath="consulta" [collapsible]="true" [collapsed]="true">
+          <div formGroupName="consulta">
+            <app-layout-stack [align]="LayoutStackAlign.Start" [stackDivider]="false" [stackFill]="false">
+              <div class="demo-fat__consulta-stack">
+                <app-data-toolbar>
+                  <div toolbar-start class="demo-fat__toolbar-start-column">
+                    <div class="demo-fat__toolbar-fields-row">
+                      <app-text-field class="demo-fat__toolbar-field" formControlName="nome"
+                        id="demo-fat-consulta-nome" name="fatConsultaNome" label="Nome" [showPrefixIcon]="true"
+                        prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+                      <app-text-field class="demo-fat__toolbar-field" formControlName="sobrenome"
+                        id="demo-fat-consulta-sobrenome" name="fatConsultaSobrenome" label="Sobrenome"
+                        [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+                    </div>
+                    <div class="demo-fat__btn-stack">
+                      <app-base-button [type]="BaseButtonType.Button" (click)="onPesquisar()">
+                        Pesquisar
+                      </app-base-button>
+                      <app-base-button [type]="BaseButtonType.Button" (click)="onLimparConsulta()">
+                        Limpar
+                      </app-base-button>
+                    </div>
+                  </div>
+                </app-data-toolbar>
+              </div>
+
+              <app-adaptive-data-view class="demo-fat__adaptive" [items]="pessoasConsulta"
+                [gridColumns]="gridColumnsAdaptive" [mapItem]="mapPessoaCard" [pageSize]="15" [pagination]="true"
+                [mobileView]="adaptiveMobileView" [desktopView]="adaptiveDesktopView" gridHeight="min(28rem, 50vh)"
+                cardScrollMaxHeight="min(28rem, 50vh)" resultCountTemplate="{count} resultado(s)"
+                emptyMessageGrid="Nenhum resultado para os filtros indicados."
+                emptyMessageCard="Nenhum resultado para os filtros indicados." (edit)="onListaEdit($event)"
+                (remove)="onListaRemove($event)" />
+            </app-layout-stack>
+          </div>
+        </app-form-group>
+      </form>
+
+      <section class="demo__preview" aria-label="Valores do formulário Form Actions / Toolbar">
+        <h3 class="demo__preview-title">Valores</h3>
+        <pre class="demo__json">{{ form.value | json }}</pre>
+      </section>
+    </div>
+  </app-form-group>
+</section>

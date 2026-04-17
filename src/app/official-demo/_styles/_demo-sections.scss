@@ -1,0 +1,98 @@
+.demo__arena {
+  margin-bottom: 1.35rem;
+}
+
+.demo__arena > app-form-group {
+  display: block;
+  width: 100%;
+}
+
+.demo__arena--layout {
+  padding-top: 0.15rem;
+}
+
+.demo__arena-head {
+  margin-bottom: 1.25rem;
+}
+
+.demo__arena-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: var(--app-color-text-primary, #171717);
+}
+
+.demo__arena-lead {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--app-color-text-muted, #525252);
+  max-width: 44rem;
+}
+
+.demo__arena-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem 2.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+}
+
+.demo__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1 1 22rem;
+  max-width: 52rem;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.demo__form--layout {
+  max-width: 54rem;
+}
+
+.demo__preview {
+  flex: 0 1 26rem;
+  min-width: min(100%, 16rem);
+  width: 100%;
+  max-width: 32rem;
+}
+
+.demo__preview-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--app-color-text-primary, #262626);
+}
+
+.demo__json {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: var(--app-color-background, #fafafa);
+  border: 1px solid var(--app-color-border, #e5e5e5);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  overflow: auto;
+  max-height: min(55vh, 28rem);
+}
+
+@media (max-width: 52rem) {
+  .demo__arena-body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .demo__preview {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .demo__json {
+    max-height: min(40vh, 22rem);
+  }
+}

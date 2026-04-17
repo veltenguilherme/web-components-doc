@@ -1,0 +1,92 @@
+<section class="demo__arena" aria-label="Demonstração de card list">
+  <app-form-group titulo="Card List"
+    subtitulo="Lista em cartões com pesquisa e ações — dados em memória (demo)."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body">
+      <form #formDir="ngForm" class="demo__form demo__form--card-list" [formGroup]="form"
+        (ngSubmit)="onAdicionarOuSalvar()" novalidate>
+        <app-form-group titulo="Cadastro" subtitulo="Incluir ou editar na lista (memória)."
+          formGroupPath="pessoa" [collapsible]="true" [collapsed]="false">
+          <div formGroupName="pessoa">
+            <app-validation-summary title="Verifique os campos abaixo:" variant="error" [visible]="summaryVisible"
+              [items]="summaryItems" panelMaxHeight="min(32vh, 10rem)" [showCloseButton]="true"
+              (panelClose)="onCloseSummaryPanel()" />
+
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field formControlName="nome" id="demo-card-list-nome" name="cardListNome" label="Nome"
+                  [required]="true" [showErrorMessage]="true" errorMessage="Nome é obrigatório." [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-user" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field formControlName="sobrenome" id="demo-card-list-sobrenome" name="cardListSobrenome"
+                  label="Sobrenome" [required]="true" [showErrorMessage]="true" errorMessage="Sobrenome é obrigatório."
+                  [showPrefixIcon]="true" prefixIcon="fa-solid fa-user-tag" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12">
+                <app-layout-stack [stackDivider]="false" [align]="LayoutStackAlign.Start">
+                  <app-base-button [type]="BaseButtonType.Submit">
+                    {{ primaryButtonLabel }}
+                  </app-base-button>
+                  @if (editingId != null) {
+                  <app-base-button [type]="BaseButtonType.Button" (click)="cancelarEdicao()">
+                    Cancelar edição
+                  </app-base-button>
+                  }
+                </app-layout-stack>
+              </app-form-col>
+            </app-form-row>
+          </div>
+
+          <app-card-list class="demo__card-list-in-cadastro" [items]="pessoas" [mapItem]="mapPessoaCard"
+            [scrollBatchSize]="10" [loading]="false" emptyMessage="Sem pessoas na lista." (edit)="onCardEdit($event)"
+            (remove)="onCardRemove($event)" />
+        </app-form-group>
+
+        <app-form-group titulo="Consulta"
+          subtitulo="Nome ou sobrenome; botão Pesquisar aplica o filtro."
+          formGroupPath="consulta" [collapsible]="true" [collapsed]="true">
+          <div formGroupName="consulta">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field formControlName="nome" id="demo-card-list-consulta-nome" name="cardListConsultaNome"
+                  label="Nome" [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field formControlName="sobrenome" id="demo-card-list-consulta-sobrenome"
+                  name="cardListConsultaSobrenome" label="Sobrenome" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12">
+                <app-layout-stack [stackDivider]="false" [align]="LayoutStackAlign.Start">
+                  <app-base-button [type]="BaseButtonType.Button" (click)="onPesquisar()">
+                    Pesquisar
+                  </app-base-button>
+                  <app-base-button [type]="BaseButtonType.Button" (click)="onLimparConsulta()">
+                    Limpar
+                  </app-base-button>
+                </app-layout-stack>
+              </app-form-col>
+            </app-form-row>
+          </div>
+
+          <app-card-list class="demo__card-list-in-consulta" [items]="pessoasConsulta" [mapItem]="mapPessoaCard"
+            [scrollBatchSize]="10" [loading]="cardListConsultaLoading" [showItemActions]="false"
+            emptyMessage="Nenhum resultado para os filtros indicados." />
+        </app-form-group>
+      </form>
+
+      <section class="demo__preview" aria-label="Valores do formulário card list">
+        <h3 class="demo__preview-title">Valores</h3>
+        <pre class="demo__json">{{ form.value | json }}</pre>
+      </section>
+    </div>
+  </app-form-group>
+</section>

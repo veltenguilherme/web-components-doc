@@ -1,0 +1,108 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo-dialogs-notifications {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    > app-form-row {
+      width: 100%;
+    }
+  }
+
+  /** Coluna da grade: preenche altura da linha para os painéis «tile» alinharem. */
+  &__panel-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+    min-width: 0;
+  }
+
+  /** Bloco alinhado à demo «Overlay» (`.demo-overlay__card`). */
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--app-color-border-subtle, rgba(26, 47, 69, 0.09));
+    background: var(--app-color-surface, #fff);
+    box-shadow: 0 1px 3px var(--app-color-shell-shadow, rgba(26, 47, 69, 0.05));
+    box-sizing: border-box;
+    min-width: 0;
+
+    /** Painéis lado a lado: preenchem a coluna (`panel-wrap` + `stretch`). */
+    &--tile {
+      flex: 1 1 auto;
+      width: 100%;
+      min-height: 0;
+    }
+  }
+
+  &__section-heading {
+    margin: 0;
+    padding-bottom: 0.35rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--app-color-text-primary, #1a2f45);
+    border-bottom: 1px solid var(--app-color-border-subtle, rgba(26, 47, 69, 0.09));
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--app-color-text-muted, #6b8299);
+    max-width: none;
+
+    code {
+      font-size: 0.85em;
+      padding: 0.08rem 0.28rem;
+      border-radius: 4px;
+      background: var(--app-color-tab-inactive-bg, #f3f6f9);
+      color: var(--app-color-text-secondary, #5a7fa3);
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--spaced {
+      margin-top: 0.15rem;
+      padding-top: 0.35rem;
+      border-top: 1px dashed var(--app-color-border-subtle, rgba(26, 47, 69, 0.12));
+
+      > app-base-button {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &__result {
+    margin: 0;
+    padding: 0.5rem 0.65rem;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: var(--app-color-text-secondary, #5a7fa3);
+    border-radius: 6px;
+    background: var(--app-color-tab-inactive-bg, #f3f6f9);
+  }
+}

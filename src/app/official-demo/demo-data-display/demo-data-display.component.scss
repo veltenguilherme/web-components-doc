@@ -1,0 +1,56 @@
+@use '../demo-sections/demo-sections.scss' as *;
+@use '../_styles/data-card-shell' as shell;
+
+:host {
+  display: block;
+}
+
+.demo-data-display {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  &__section-title {
+    margin: 0.25rem 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--app-color-text-primary, #1a2f45);
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--app-color-border-subtle, rgba(26, 47, 69, 0.09));
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--app-color-text-muted, #6b8299);
+    max-width: 52rem;
+
+    code {
+      font-size: 0.85em;
+      padding: 0.08rem 0.28rem;
+      border-radius: 4px;
+      background: var(--app-color-tab-inactive-bg, #f3f6f9);
+      color: var(--app-color-text-secondary, #5a7fa3);
+    }
+  }
+
+  &__badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.65rem;
+  }
+
+  /** Superfície partilhada com `app-data-card` / `app-stat-card` (mixin `data-card-shell`). */
+  &__card-shell {
+    margin: 0;
+    max-width: 100%;
+    @include shell.data-card-shell(0.85rem 1rem);
+  }
+}

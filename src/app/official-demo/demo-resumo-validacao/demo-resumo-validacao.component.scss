@@ -1,0 +1,46 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo__form--resumo {
+  max-width: 48rem;
+}
+
+.demo__validar-toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+/* «Validar» estica entre a margem esquerda e o switch (fullWidth no botão + flex-grow no host). */
+.demo__validar-toolbar-btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: center;
+}
+
+/*
+ * `app-switch-field` usa `:host { width: 100% }` — forçamos só à largura do rótulo para não sobrepor o botão.
+ */
+.demo__validar-toolbar-switch {
+  flex: 0 0 auto;
+  align-self: center;
+  width: fit-content !important;
+  max-width: min(100%, 20rem);
+}
+
+@media (max-width: 30rem) {
+  .demo__validar-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .demo__validar-toolbar-btn {
+    flex: 1 1 100%;
+  }
+}

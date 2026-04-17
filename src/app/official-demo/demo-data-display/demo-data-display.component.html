@@ -1,0 +1,144 @@
+<section class="demo__arena" aria-label="Demonstração Data Display">
+  <app-form-group titulo="Data Display"
+    subtitulo="Listas, linhas, seções de painel, badges e cartões de métricas."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="onCollapsedChange($event)">
+    <div class="demo__arena-body demo-data-display__body">
+      <h3 class="demo-data-display__section-title">Dashboard (seções)</h3>
+      <p class="demo-data-display__hint">
+        <code>app-dashboard-section</code> agrupa conteúdo com o mesmo shell dos cartões; interior com
+        <code>app-form-row</code> / <code>app-stat-card</code> e listas.
+      </p>
+
+      <app-dashboard-section title="Painel de vendas" subtitle="Indicadores do período actual.">
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [sm]="6" [md]="4">
+            <app-stat-card title="Faturamento" value="€ 48.200" description="vs mês anterior" delta="+6%"
+              deltaTone="positive" icon="fa-solid fa-euro-sign" />
+          </app-form-col>
+          <app-form-col [xs]="12" [sm]="6" [md]="4">
+            <app-stat-card title="Novos clientes" value="126" description="trimestre" delta="+2%" deltaTone="positive"
+              icon="fa-solid fa-user-plus" />
+          </app-form-col>
+          <app-form-col [xs]="12" [sm]="12" [md]="4">
+            <app-stat-card title="Taxa de conversão" value="3,2%" description="média trimestral" delta="0,1 p.p."
+              deltaTone="neutral" icon="fa-solid fa-chart-line" />
+          </app-form-col>
+        </app-form-row>
+      </app-dashboard-section>
+
+      <app-dashboard-section title="Pedidos recentes" subtitle="Lista com estado e menu de ações.">
+        <app-base-button dashboard-section-actions [type]="BaseButtonType.Button"
+          [variant]="BaseButtonVariant.Secondary" [fullWidth]="false"
+          (click)="lastListMenu = 'exportar: pedidos (demo)'">
+          Exportar CSV
+        </app-base-button>
+        <app-data-list [loading]="false" [empty]="false">
+          @for (p of pedidosRecentes; track p.id) {
+          <app-list-item [title]="p.titulo" [subtitle]="p.subtitulo + ' · ' + p.meta">
+            <span list-item-status>
+              <app-status-badge [label]="p.estadoLabel" [variant]="p.estado" size="sm" />
+            </span>
+            <span list-item-actions>
+              <app-action-menu [items]="menuPedido(p.id)" [menuId]="'pedido-menu-' + p.id"
+                (itemSelect)="onPedidoMenu($event, p.id)" />
+            </span>
+          </app-list-item>
+          }
+        </app-data-list>
+        @if (lastListMenu) {
+        <p class="demo-data-display__hint" role="status">Última ação (demo): {{ lastListMenu }}</p>
+        }
+      </app-dashboard-section>
+
+      <app-dashboard-section title="Fila de revisão" subtitle="Estado vazio padronizado com `app-data-list`.">
+        <app-data-list [empty]="true" emptyTitle="Nenhum item em revisão"
+          emptyDescription="Quando existirem registros pendentes, aparecem aqui."
+          emptyIconClass="fa-solid fa-clipboard-check" />
+      </app-dashboard-section>
+
+      <h3 class="demo-data-display__section-title">Lista de registros</h3>
+      <p class="demo-data-display__hint">
+        <code>app-data-list</code> + <code>app-list-item</code> — item opcionalmente clicável na variante abaixo
+        (teclado: Enter / Espaço).
+      </p>
+      <app-data-list [loading]="false" [empty]="false">
+        <app-list-item title="Notificação #882" subtitle="Integração · falha de sincronização" [clickable]="true"
+          [selectable]="true" (itemActivate)="lastListMenu = 'notif-882: abrir (demo)'">
+          <span list-item-status>
+            <app-status-badge label="Erro" variant="error" size="sm" icon="fa-solid fa-triangle-exclamation" />
+          </span>
+          <span list-item-actions>
+            <app-action-menu [items]="[
+                { kind: 'item', id: 'retry', label: 'Repetir', icon: 'fa-solid fa-rotate' },
+                { kind: 'item', id: 'mute', label: 'Silenciar', icon: 'fa-solid fa-bell-slash' },
+              ]" menuId="demo-notif-menu" (itemSelect)="lastListMenu = 'notif: ' + $event" />
+          </span>
+        </app-list-item>
+      </app-data-list>
+
+      <h3 class="demo-data-display__section-title">Etapa 1 — Status badge</h3>
+      <p class="demo-data-display__hint">
+        Variantes semânticas; ícone opcional. O texto do estado não depende só da cor (<code>role="status"</code>).
+      </p>
+      <div class="demo-data-display__badge-row">
+        <app-status-badge label="Ativo" variant="success" icon="fa-solid fa-check" />
+        <app-status-badge label="Erro" variant="error" icon="fa-solid fa-xmark" />
+        <app-status-badge label="Pendente" variant="warning" icon="fa-solid fa-clock" />
+        <app-status-badge label="Em análise" variant="info" icon="fa-solid fa-magnifying-glass" />
+        <app-status-badge label="Rascunho" variant="neutral" />
+        <app-status-badge label="Pago" variant="success" size="sm" icon="fa-solid fa-receipt" />
+        <app-status-badge label="Cancelado" variant="error" size="sm" />
+      </div>
+
+      <h3 class="demo-data-display__section-title">Details view (lista)</h3>
+      <app-details-view [items]="sampleDetails" [columns]="2" />
+
+      <h3 class="demo-data-display__section-title">Details view (vazio)</h3>
+      <p class="demo-data-display__hint">
+        Sem itens e sem <code>loading</code> — mensagem configurável via <code>emptyMessage</code>.
+      </p>
+      <app-details-view [items]="[]" emptyMessage="Nenhum campo disponível para este registro." />
+
+      <h3 class="demo-data-display__section-title">Details view (loading)</h3>
+      <p class="demo-data-display__hint">Estado <code>loading</code> com <code>app-skeleton-text</code>.</p>
+      <app-details-view [loading]="true" />
+
+      <h3 class="demo-data-display__section-title">Details view (dentro de cartão + valor rico)</h3>
+      <p class="demo-data-display__hint">
+        Superfície com os mesmos tokens de <code>data-card</code> (borda, raio, fundo).
+      </p>
+      <article class="demo-data-display__card-shell" aria-label="Resumo do registro">
+        <app-details-view [projectionOnly]="true" [columns]="2">
+          <app-details-field label="Cliente">ACME Lda.</app-details-field>
+          <app-details-field label="Estado">
+            <app-status-badge label="Em análise" variant="info" size="sm" icon="fa-solid fa-hourglass-half" />
+          </app-details-field>
+          <app-details-field label="NIF">501 234 567</app-details-field>
+          <app-details-field label="Observação">—</app-details-field>
+        </app-details-view>
+      </article>
+
+      <h3 class="demo-data-display__section-title">Etapa 1 — Stat card (métricas)</h3>
+      <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="4">
+          <app-stat-card title="Faturamento" value="R$ 12.450" description="vs mês anterior" delta="+12%"
+            deltaTone="positive" icon="fa-solid fa-brazilian-real-sign" />
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <app-stat-card title="Pedidos em aberto" value="38" description="últimas 24 h" delta="−3%"
+            deltaTone="negative" icon="fa-solid fa-cart-shopping" />
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <app-stat-card title="Taxa de conversão" value="3,2%" description="média trimestral" delta="0,1 p.p."
+            deltaTone="neutral" [clickable]="true" (cardActivate)="onStatCardDemo()" />
+        </app-form-col>
+      </app-form-row>
+      @if (statClickCount > 0) {
+      <p class="demo-data-display__hint" role="status">
+        Cartão clicável ativado {{ statClickCount }} vez(es) (demo).
+      </p>
+      }
+    </div>
+  </app-form-group>
+</section>

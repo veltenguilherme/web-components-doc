@@ -1,0 +1,361 @@
+<div class="demo-form-exemplo">
+  <form class="demo-form-exemplo__form" [formGroup]="clienteForm" (ngSubmit)="onSalvarCliente()" novalidate>
+    <app-layout-stack [align]="LayoutStackAlign.Start" [stackDivider]="false" [stackFill]="false">
+      <div #clienteSummaryAnchor class="demo-form-exemplo__validation-anchor" tabindex="-1">
+        <app-validation-summary title="Verifique os campos abaixo:" variant="error" [visible]="clienteSummaryVisible"
+          [pinned]="clienteValidationSummaryPinned" [items]="clienteSummaryItems" panelMaxHeight="min(32vh, 11rem)"
+          [beforeItemActivate]="onBeforeClienteSummaryItem" [showCloseButton]="true"
+          (panelClose)="onCloseClienteSummary()" />
+        @if (formularioContextoDemo !== '—') {
+        <p class="demo-form-exemplo__ctx-feedback" role="status">Menu «…» (demo): {{ formularioContextoDemo }}
+        </p>
+        }
+      </div>
+
+      <app-form-section class="demo-form-exemplo__stack-fill" titulo="Cadastro"
+        subtitulo="Exemplo em memória; o «…» nos campos abre menus como na demo Menus."
+        [withDivider]="true">
+        <app-form-group titulo="Identificação e contato principal" subtitulo="Dados cadastrais e canal principal."
+          [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="false"
+          [showDivider]="true" [groupInvalid]="grupoIdentificacaoContatoPrincipalInvalido()">
+          <app-form-group titulo="Identificação" subtitulo="Documentos e tipo de pessoa." formGroupPath="identificacao"
+            [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="false">
+            <div formGroupName="identificacao">
+              <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                <app-form-col [xs]="12" [md]="8">
+                  <app-text-field [loading]="clienteSalvarLoading" formControlName="razaoSocial" id="demo-cli-razao"
+                    name="cliRazao" label="Razão social / Nome" [required]="true" [showPrefixIcon]="true"
+                    prefixIcon="fa-solid fa-building" [clearable]="true" [mostrarMenuContexto]="true"
+                    [contextMenuItems]="formCtxMenuRazao" contextMenuId="demo-form-ctx-razao"
+                    (contextMenuSelect)="onFormularioContextoSelect('Razão social', $event)" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="4">
+                  <app-select-field [loading]="clienteSalvarLoading" formControlName="tipoPessoa"
+                    id="demo-cli-tipo-pessoa" name="cliTipoPessoa" label="Tipo de pessoa" [options]="tipoPessoaOptions"
+                    [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-id-card" [clearable]="false" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="6">
+                  <app-text-field [loading]="clienteSalvarLoading" formControlName="nomeFantasia" id="demo-cli-fantasia"
+                    name="cliFantasia" label="Nome fantasia" [showPrefixIcon]="true" prefixIcon="fa-solid fa-signature"
+                    [clearable]="true" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="6">
+                  <app-cpf-cnpj-field [loading]="clienteSalvarLoading" formControlName="cpfCnpj" id="demo-cli-doc"
+                    name="cliDoc" label="CPF/CNPJ" [required]="true" [showPrefixIcon]="true"
+                    prefixIcon="fa-solid fa-id-card" [clearable]="true" [mostrarMenuContexto]="true"
+                    [contextMenuItems]="formCtxMenuCpf" contextMenuId="demo-form-ctx-cpf"
+                    (contextMenuSelect)="onFormularioContextoSelect('CPF/CNPJ', $event)" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="6">
+                  <app-text-field [loading]="clienteSalvarLoading" formControlName="inscricaoEstadual" id="demo-cli-ie"
+                    name="cliIe" label="Inscrição estadual" [showPrefixIcon]="true" prefixIcon="fa-solid fa-file-lines"
+                    [clearable]="true" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="6">
+                  <app-text-field [loading]="clienteSalvarLoading" formControlName="inscricaoMunicipal" id="demo-cli-im"
+                    name="cliIm" label="Inscrição municipal" [showPrefixIcon]="true"
+                    prefixIcon="fa-solid fa-file-invoice" [clearable]="true" />
+                </app-form-col>
+              </app-form-row>
+            </div>
+          </app-form-group>
+
+          <app-form-group titulo="Contato principal" subtitulo="Canais oficiais do cliente."
+            formGroupPath="contatoPrincipal" [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading"
+            [collapsed]="true" [destroyOnCollapse]="true">
+            <div formGroupName="contatoPrincipal">
+              <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                <app-form-col [xs]="12" [md]="6">
+                  <app-text-field [loading]="clienteSalvarLoading" formControlName="email" id="demo-cli-email"
+                    name="cliEmail" label="E-mail" [required]="true" [showPrefixIcon]="true"
+                    prefixIcon="fa-solid fa-envelope" [clearable]="true" [mostrarMenuContexto]="true"
+                    [contextMenuItems]="formCtxMenuEmail" contextMenuId="demo-form-ctx-email"
+                    (contextMenuSelect)="onFormularioContextoSelect('E-mail', $event)" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="3">
+                  <app-phone-field [loading]="clienteSalvarLoading" formControlName="telefone" id="demo-cli-tel"
+                    name="cliTel" label="Telefone" [showPrefixIcon]="true" prefixIcon="fa-solid fa-phone"
+                    [clearable]="true" />
+                </app-form-col>
+                <app-form-col [xs]="12" [md]="3">
+                  <app-phone-field [loading]="clienteSalvarLoading" formControlName="celular" id="demo-cli-cel"
+                    name="cliCel" label="Celular" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen"
+                    [clearable]="true" />
+                </app-form-col>
+                <app-form-col [xs]="12">
+                  <app-text-field [loading]="clienteSalvarLoading" formControlName="site" id="demo-cli-site"
+                    name="cliSite" label="Site" [showPrefixIcon]="true" prefixIcon="fa-solid fa-globe"
+                    [clearable]="true" />
+                </app-form-col>
+              </app-form-row>
+            </div>
+          </app-form-group>
+        </app-form-group>
+
+        <app-form-group titulo="Endereço" subtitulo="Localização para faturação e envio." formGroupPath="endereco"
+          [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="true"
+          [showDivider]="true">
+          <div formGroupName="endereco">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="3">
+                <app-cep-field [loading]="clienteSalvarLoading" formControlName="cep" id="demo-cli-cep" name="cliCep"
+                  label="CEP" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot"
+                  [clearable]="true" [mostrarMenuContexto]="true" [contextMenuItems]="formCtxMenuCep"
+                  contextMenuId="demo-form-ctx-cep" (contextMenuSelect)="onFormularioContextoSelect('CEP', $event)" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="logradouro" id="demo-cli-logra"
+                  name="cliLogra" label="Logradouro" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-road" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="3">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="numero" id="demo-cli-num"
+                  name="cliNum" label="Número" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-hashtag" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="complemento" id="demo-cli-comp"
+                  name="cliComp" label="Complemento" [showPrefixIcon]="true" prefixIcon="fa-solid fa-layer-group"
+                  [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="bairro" id="demo-cli-bairro"
+                  name="cliBairro" label="Bairro" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-map-pin" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="cidade" id="demo-cli-cidade"
+                  name="cliCidade" label="Cidade" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-city" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-select-field [loading]="clienteSalvarLoading" formControlName="estado" id="demo-cli-estado"
+                  name="cliEstado" label="Estado (UF)" placeholder="Selecione o estado"
+                  [options]="estados.estadoOptions" [pagination]="true" [pageSize]="estados.pageSizeEstados"
+                  [hasMore]="estados.estadosHasMore" [loadingMore]="estados.estadosLoading"
+                  (pageRequested)="onEstadosPage($event)" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-map" [clearable]="true" [mostrarMenuContexto]="true"
+                  [contextMenuItems]="formCtxMenuUf" contextMenuId="demo-form-ctx-uf"
+                  (contextMenuSelect)="onFormularioContextoSelect('Estado (UF)', $event)" />
+              </app-form-col>
+            </app-form-row>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Dados comerciais" subtitulo="Crédito, segmentação e observações."
+          formGroupPath="comercial" [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading"
+          [collapsed]="true" [showDivider]="true">
+          <div formGroupName="comercial">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="4">
+                <app-decimal-field [loading]="clienteSalvarLoading" formControlName="limiteCredito" id="demo-cli-limite"
+                  name="cliLimite" label="Limite de crédito (R$)" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-brazilian-real-sign" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-select-field [loading]="clienteSalvarLoading" formControlName="faixaFaturamento"
+                  id="demo-cli-faixa" name="cliFaixa" label="Faixa de faturamento" [options]="faixaFaturamentoOptions"
+                  [showPrefixIcon]="true" prefixIcon="fa-solid fa-chart-column" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-select-field [loading]="clienteSalvarLoading" formControlName="status" id="demo-cli-status"
+                  name="cliStatus" label="Status" [options]="statusClienteOptions" [required]="true"
+                  [showPrefixIcon]="true" prefixIcon="fa-solid fa-circle-half-stroke" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12">
+                <app-multiselect-field [loading]="clienteSalvarLoading" formControlName="segmentos"
+                  id="demo-cli-segmentos" name="cliSegmentos" label="Segmentos de atuação"
+                  placeholder="Selecione um ou mais" [options]="segmentosOptions" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-tags" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12">
+                <app-textarea-field [loading]="clienteSalvarLoading" formControlName="observacoes" id="demo-cli-obs"
+                  name="cliObs" label="Observações comerciais" [rows]="3" [mostrarMenuContexto]="true"
+                  [contextMenuItems]="formCtxMenuObs" contextMenuId="demo-form-ctx-obs"
+                  (contextMenuSelect)="onFormularioContextoSelect('Observações comerciais', $event)" />
+              </app-form-col>
+            </app-form-row>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Preferências" subtitulo="Comunicação, prioridade e registro interno."
+          formGroupPath="preferencias" [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading"
+          [collapsed]="true" [showDivider]="true">
+          <div formGroupName="preferencias">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="4">
+                <app-checkbox-field [loading]="clienteSalvarLoading" formControlName="aceitaComunicacoes"
+                  id="demo-cli-aceite-com" name="cliAceiteCom" label="Aceita comunicações" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-switch-field [loading]="clienteSalvarLoading" formControlName="clienteAtivo" id="demo-cli-ativo"
+                  name="cliAtivoSw" label="Cliente ativo" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-select-field [loading]="clienteSalvarLoading" formControlName="categoriaAtendimento"
+                  id="demo-cli-cat" name="cliCat" label="Categoria de atendimento"
+                  [options]="categoriaAtendimentoOptions" [showPrefixIcon]="true" prefixIcon="fa-solid fa-headset"
+                  [clearable]="false" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-select-field [loading]="clienteSalvarLoading" formControlName="prioridade" id="demo-cli-prio"
+                  name="cliPrio" label="Prioridade" [options]="prioridadeOptions" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-flag" [clearable]="false" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-date-field [loading]="clienteSalvarLoading" formControlName="dataCadastro" id="demo-cli-dt"
+                  name="cliDt" label="Data de cadastro" [showPrefixIcon]="true" prefixIcon="fa-solid fa-calendar"
+                  [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="responsavelInterno" id="demo-cli-resp"
+                  name="cliResp" label="Responsável interno" [showPrefixIcon]="true" prefixIcon="fa-solid fa-user-tie"
+                  [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Informações adicionais"
+          subtitulo="Abas no mesmo cadastro: obrigatório e opcional."
+          [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="true"
+          [showDivider]="true" [groupInvalid]="grupoAbasClienteInvalido()">
+          <div formGroupName="abasCliente">
+            <app-form-tabs [(activeKey)]="abasClienteActiveKey" [keepAlive]="true"
+              tablistAriaLabel="Separadores de dados extra do cliente">
+              <app-form-tab key="obrigatorio" tabTitle="Obrigatório" [warning]="abasClienteTabWarning('obrigatorio')">
+                <app-form-group titulo="Campos obrigatórios"
+                  subtitulo="Referência e área — obrigatórios ao guardar."
+                  formGroupPath="abasCliente.obrigatorio" [collapsible]="true" [foldable]="true"
+                  [disabled]="clienteSalvarLoading" [collapsed]="false">
+                  <div formGroupName="obrigatorio">
+                    <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                      <app-form-col [xs]="12" [md]="6">
+                        <app-text-field [loading]="clienteSalvarLoading" formControlName="referenciaInterna"
+                          id="demo-cli-abas-ref" name="cliAbasRef" label="Referência interna" [required]="true"
+                          [showPrefixIcon]="true" prefixIcon="fa-solid fa-bookmark" [clearable]="true" />
+                      </app-form-col>
+                      <app-form-col [xs]="12" [md]="6">
+                        <app-text-field [loading]="clienteSalvarLoading" formControlName="setorResponsavel"
+                          id="demo-cli-abas-setor" name="cliAbasSetor" label="Área / setor" [required]="true"
+                          [showPrefixIcon]="true" prefixIcon="fa-solid fa-sitemap" [clearable]="true" />
+                      </app-form-col>
+                    </app-form-row>
+                  </div>
+                </app-form-group>
+              </app-form-tab>
+              <app-form-tab key="opcional" tabTitle="Opcional" [warning]="abasClienteTabWarning('opcional')">
+                <app-form-group titulo="Campos opcionais"
+                  subtitulo="Notas e convênio (opcionais)."
+                  formGroupPath="abasCliente.opcional" [collapsible]="true" [foldable]="true"
+                  [disabled]="clienteSalvarLoading" [collapsed]="false">
+                  <div formGroupName="opcional">
+                    <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                      <app-form-col [xs]="12">
+                        <app-textarea-field [loading]="clienteSalvarLoading" formControlName="notasAdicionais"
+                          id="demo-cli-abas-notas" name="cliAbasNotas" label="Notas adicionais" [rows]="3" />
+                      </app-form-col>
+                      <app-form-col [xs]="12" [md]="6">
+                        <app-text-field [loading]="clienteSalvarLoading" formControlName="codigoConvenio"
+                          id="demo-cli-abas-convenio" name="cliAbasConv" label="Código de convênio"
+                          [showPrefixIcon]="true" prefixIcon="fa-solid fa-ticket" [clearable]="true" />
+                      </app-form-col>
+                    </app-form-row>
+                  </div>
+                </app-form-group>
+              </app-form-tab>
+            </app-form-tabs>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Contatos" [subtitulo]="contatoSecaoSubtitulo" [collapsible]="true" [foldable]="true"
+          [disabled]="clienteSalvarLoading" [collapsed]="true" [showDivider]="true"
+          [groupInvalid]="grupoContatosParentInvalido()">
+          <div [formGroup]="contatoEdicaoForm" #contatoEdicaoFormDir="ngForm">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="nome" id="demo-cli-ct-nome"
+                  name="cliCtNome" label="Nome" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-user"
+                  [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="cargo" id="demo-cli-ct-cargo"
+                  name="cliCtCargo" label="Cargo" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-briefcase" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [loading]="clienteSalvarLoading" formControlName="email" id="demo-cli-ct-email"
+                  name="cliCtEmail" label="E-mail" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-envelope" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="3">
+                <app-phone-field [loading]="clienteSalvarLoading" formControlName="telefone" id="demo-cli-ct-tel"
+                  name="cliCtTel" label="Telefone" [landline]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-phone" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="3">
+                <app-phone-field [loading]="clienteSalvarLoading" formControlName="celular" id="demo-cli-ct-cel"
+                  name="cliCtCel" label="Celular" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen"
+                  [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="4">
+                <app-switch-field [loading]="clienteSalvarLoading" formControlName="ativo" id="demo-cli-ct-ativo"
+                  name="cliCtAtivo" label="Ativo" />
+              </app-form-col>
+            </app-form-row>
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12">
+                <app-layout-stack [stackDivider]="false" [align]="LayoutStackAlign.Start">
+                  <app-base-button [type]="BaseButtonType.Button" [readonly]="clienteSalvarLoading"
+                    (click)="onAcaoPrincipalContato()">
+                    {{ labelBotaoPrincipalContato }}
+                  </app-base-button>
+                  @if (contatoEdicaoId != null) {
+                  <app-base-button [type]="BaseButtonType.Button" [readonly]="clienteSalvarLoading"
+                    (click)="onCancelarContatoEdicao()">
+                    Cancelar
+                  </app-base-button>
+                  }
+                </app-layout-stack>
+              </app-form-col>
+            </app-form-row>
+          </div>
+
+          <app-adaptive-data-view class="demo-form-exemplo__adaptive demo-form-exemplo__contatos-lista"
+            [items]="contatosFiltradosRows" [gridColumns]="contatosGridColumns" [mapItem]="mapContatoCard"
+            [pageSize]="8" [pagination]="true" [loading]="clienteSalvarLoading || contatosListaLoading"
+            gridHeight="min(22rem, 48vh)" cardScrollMaxHeight="min(22rem, 48vh)"
+            resultCountTemplate="{count} contato(s)" emptyMessageGrid="Nenhum contato na lista."
+            emptyMessageCard="Nenhum contato na lista." (edit)="onContatoListaEdit($event)"
+            (remove)="onContatoListaRemove($event)" />
+        </app-form-group>
+
+        <app-form-actions [align]="FormActionsAlign.Start" [divider]="true">
+          <app-base-button [type]="BaseButtonType.Submit" [readonly]="clienteSalvarLoading">
+            Salvar
+          </app-base-button>
+        </app-form-actions>
+      </app-form-section>
+
+      <app-form-section class="demo-form-exemplo__stack-fill demo-form-exemplo__consulta-pos-cadastro" titulo="Consulta"
+        subtitulo="Registros desta sessão; editar reabre o cadastro acima."
+        [withDivider]="true">
+        <div formGroupName="consultaCadastros">
+          <app-data-toolbar>
+            <div toolbar-start class="demo-form-exemplo__toolbar">
+              <app-text-field [loading]="clienteSalvarLoading" class="demo-form-exemplo__toolbar-field"
+                formControlName="termo" id="demo-cli-cadastros-busca" name="cliCadBusca" label="Pesquisar registro"
+                [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+            </div>
+          </app-data-toolbar>
+        </div>
+        <app-adaptive-data-view class="demo-form-exemplo__adaptive" [loading]="clienteSalvarLoading"
+          [items]="clientesListaFiltradosRows" [gridColumns]="clientesListaGridColumns" [mapItem]="mapClienteListaCard"
+          [pageSize]="8" [pagination]="true" gridHeight="min(18rem, 40vh)" cardScrollMaxHeight="min(18rem, 40vh)"
+          resultCountTemplate="{count} registro(s)" emptyMessageGrid="Nenhum registro com os filtros indicados."
+          emptyMessageCard="Nenhum registro com os filtros indicados." (edit)="onClienteListaEdit($event)"
+          (remove)="onClienteListaRemove($event)" />
+      </app-form-section>
+    </app-layout-stack>
+  </form>
+</div>

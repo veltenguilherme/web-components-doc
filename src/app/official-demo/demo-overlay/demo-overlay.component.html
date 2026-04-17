@@ -1,0 +1,164 @@
+<section class="demo__arena" aria-label="Demonstração de overlay, tooltip e popover">
+  <app-form-group titulo="Overlay, tooltip e popover"
+    subtitulo="Popover e tooltip ancorados ao elemento; fecha ao clicar fora ou com Escape."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body demo-overlay__body">
+      <h3 class="demo-overlay__section-heading">Tooltips</h3>
+
+      <app-form-row [gap]="FormRowGap.Lg" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Texto simples</h4>
+            <p class="demo-overlay__card-hint">`placement` bottom — hover ou foco no botão.</p>
+            <div class="demo-overlay__card-demo">
+              <app-tooltip text="Grava as alterações no servidor." [placement]="OverlayPlacement.Bottom">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Guardar
+                </app-base-button>
+              </app-tooltip>
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Ícone de ajuda</h4>
+            <p class="demo-overlay__card-hint">Tooltip à esquerda do ícone (`placement` left).</p>
+            <div class="demo-overlay__card-demo">
+              <app-tooltip text="Informação adicional sobre este valor." [placement]="OverlayPlacement.Left"
+                [showDelayMs]="0">
+                <span class="demo-overlay__icon-hint" tabindex="0" role="img" aria-label="Ajuda">
+                  <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+                </span>
+              </app-tooltip>
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Outras posições</h4>
+            <p class="demo-overlay__card-hint">Topo e direita; o CDK ajusta se faltar espaço.</p>
+            <div class="demo-overlay__card-demo">
+              <app-tooltip text="Topo" [placement]="OverlayPlacement.Top">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Top
+                </app-base-button>
+              </app-tooltip>
+              <app-tooltip text="Direita" [placement]="OverlayPlacement.Right">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Right
+                </app-base-button>
+              </app-tooltip>
+            </div>
+          </div>
+        </app-form-col>
+      </app-form-row>
+
+      <app-form-row [gap]="FormRowGap.Lg" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="6">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Conteúdo rico</h4>
+            <p class="demo-overlay__card-hint">`ng-template` com <code>appTooltipPanel</code> em vez de texto simples.
+            </p>
+            <div class="demo-overlay__card-demo">
+              <app-tooltip [placement]="OverlayPlacement.Top" [showDelayMs]="150">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Primary">
+                  Detalhes
+                </app-base-button>
+                <ng-template appTooltipPanel>
+                  <span class="demo-overlay__rich-tip">
+                    <strong>Nota:</strong> texto com <em>énfase</em> e múltiplas linhas no mesmo modelo.
+                  </span>
+                </ng-template>
+              </app-tooltip>
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="6">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Foco por teclado</h4>
+            <p class="demo-overlay__card-hint">Tab até o controle: o tooltip abre no foco, não só com o mouse.</p>
+            <div class="demo-overlay__card-demo">
+              <app-tooltip text="Abre também quando o controle recebe foco." [placement]="OverlayPlacement.Bottom">
+                <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Focar e ver tooltip
+                </app-base-button>
+              </app-tooltip>
+            </div>
+          </div>
+        </app-form-col>
+      </app-form-row>
+
+      <h3 class="demo-overlay__section-heading">Popovers</h3>
+
+      <app-form-row [gap]="FormRowGap.Lg" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Simples</h4>
+            <p class="demo-overlay__card-hint">Só corpo; fechar com clique fora ou Esc.</p>
+            <div class="demo-overlay__card-demo">
+              <app-popover [(open)]="popoverSimpleOpen" ariaLabel="Exemplo de popover simples">
+                <app-base-button appPopoverTrigger [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Abrir popover
+                </app-base-button>
+                <ng-template appPopoverBody>
+                  <p class="demo-overlay__pop-p">Conteúdo auxiliar sem título.</p>
+                </ng-template>
+              </app-popover>
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Com título</h4>
+            <p class="demo-overlay__card-hint">Cabeçalho no painel + `placement` bottom.</p>
+            <div class="demo-overlay__card-demo">
+              <app-popover [(open)]="popoverTitleOpen" title="Filtro rápido" [placement]="OverlayPlacement.Bottom">
+                <app-base-button appPopoverTrigger [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Opções
+                </app-base-button>
+                <ng-template appPopoverBody>
+                  <p class="demo-overlay__pop-p">Ajuda contextual, filtros ou texto de apoio.</p>
+                </ng-template>
+              </app-popover>
+            </div>
+          </div>
+        </app-form-col>
+        <app-form-col [xs]="12" [md]="4">
+          <div class="demo-overlay__card">
+            <h4 class="demo-overlay__card-title">Com rodapé</h4>
+            <p class="demo-overlay__card-hint">Área de ações com botões no `appPopoverFooter`.</p>
+            <div class="demo-overlay__card-demo">
+              <app-popover [(open)]="popoverFooterOpen" title="Confirmar" [placement]="OverlayPlacement.Bottom">
+                <app-base-button appPopoverTrigger [type]="BaseButtonType.Button" [fullWidth]="false"
+                  [variant]="BaseButtonVariant.Secondary">
+                  Ações
+                </app-base-button>
+                <ng-template appPopoverBody>
+                  <p class="demo-overlay__pop-p">Mini-formulários ou botões no rodapé.</p>
+                </ng-template>
+                <ng-template appPopoverFooter>
+                  <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                    [variant]="BaseButtonVariant.Secondary" (click)="popoverFooterOpen = false">
+                    Cancelar
+                  </app-base-button>
+                  <app-base-button [type]="BaseButtonType.Button" [fullWidth]="false"
+                    [variant]="BaseButtonVariant.Primary" (click)="popoverFooterOpen = false">
+                    Aplicar
+                  </app-base-button>
+                </ng-template>
+              </app-popover>
+            </div>
+          </div>
+        </app-form-col>
+      </app-form-row>
+    </div>
+  </app-form-group>
+</section>

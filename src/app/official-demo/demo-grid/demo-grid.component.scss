@@ -1,0 +1,26 @@
+@use '../demo-sections/demo-sections.scss' as *;
+
+:host {
+  display: block;
+}
+
+.demo__form--grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 56rem;
+}
+
+.demo__grid-in-pessoa {
+  display: block;
+  margin-top: 0.25rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.demo__grid-in-consulta {
+  display: block;
+  margin-top: 0.25rem;
+  width: 100%;
+  max-width: 100%;
+}

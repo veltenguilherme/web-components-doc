@@ -1,0 +1,124 @@
+<section class="demo__arena" aria-label="Demonstração de resumo de validação">
+  <app-form-group
+    titulo="Resumo de validações"
+    subtitulo="Lista de erros ao validar; toque num item para ir ao campo correspondente."
+    [collapsible]="true"
+    [skipBodyChildStacking]="true"
+    [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)"
+  >
+    <ng-container *ngTemplateOutlet="resumoDemoBody" />
+  </app-form-group>
+</section>
+
+<ng-template #resumoDemoBody>
+  <div class="demo__arena-body">
+    <form #resumoForm="ngForm" class="demo__form demo__form--resumo" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <app-validation-summary
+        title="Verifique os campos abaixo:"
+        variant="error"
+        [visible]="summaryVisible"
+        [pinned]="summaryPinned"
+        [items]="summaryItems"
+        panelMaxHeight="min(36vh, 11rem)"
+        [showCloseButton]="true"
+        (panelClose)="onCloseSummaryPanel()"
+      />
+
+      <app-form-group
+        titulo="Identificação"
+        subtitulo="Dados mínimos para contato."
+        formGroupPath="identificacao"
+        [collapsible]="true"
+        [collapsed]="false"
+      >
+        <div formGroupName="identificacao">
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12" [md]="6">
+              <app-text-field
+                formControlName="nome"
+                id="demo-resumo-nome"
+                name="resumoNome"
+                label="Nome"
+                [required]="true"
+                [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-user"
+                [clearable]="true"
+              />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-text-field
+                formControlName="email"
+                id="demo-resumo-email"
+                name="resumoEmail"
+                label="E-mail"
+                [required]="true"
+                [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-envelope"
+                [clearable]="true"
+              />
+            </app-form-col>
+          </app-form-row>
+        </div>
+      </app-form-group>
+
+      <app-form-group
+        titulo="Preferências"
+        subtitulo="Aceite e prioridade numérica."
+        formGroupPath="preferencias"
+        [collapsible]="true"
+        [collapsed]="true"
+      >
+        <div formGroupName="preferencias">
+          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-col [xs]="12" [md]="6">
+              <app-checkbox-field
+                formControlName="aceite"
+                id="demo-resumo-aceite"
+                name="resumoAceite"
+                label="Li e aceito as condições"
+                [required]="true"
+              />
+            </app-form-col>
+            <app-form-col [xs]="12" [md]="6">
+              <app-integer-field
+                formControlName="prioridade"
+                id="demo-resumo-prioridade"
+                name="resumoPrioridade"
+                label="Prioridade (1–5)"
+                [required]="true"
+                [showPrefixIcon]="true"
+                prefixIcon="fa-solid fa-hashtag"
+                [clearable]="true"
+              />
+            </app-form-col>
+          </app-form-row>
+        </div>
+      </app-form-group>
+
+      <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-col [xs]="12">
+          <div class="demo__validar-toolbar">
+            <app-base-button class="demo__validar-toolbar-btn" [type]="BaseButtonType.Submit" [fullWidth]="true">
+              Validar
+            </app-base-button>
+            <app-switch-field
+              class="demo__validar-toolbar-switch"
+              [(ngModel)]="summaryPinned"
+              [ngModelOptions]="{ standalone: true }"
+              name="resumoNotifPinned"
+              id="demo-resumo-notif-pinned"
+              label="Notificação pinned"
+              (ngModelChange)="onSummaryPinnedChange()"
+            />
+          </div>
+        </app-form-col>
+      </app-form-row>
+    </form>
+
+    <section class="demo__preview" aria-label="Valores do formulário de resumo">
+      <h3 class="demo__preview-title">Valores</h3>
+      <pre class="demo__json">{{ form.value | json }}</pre>
+    </section>
+  </div>
+</ng-template>

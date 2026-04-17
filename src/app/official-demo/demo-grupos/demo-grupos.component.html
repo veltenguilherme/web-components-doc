@@ -1,0 +1,146 @@
+<section class="demo__arena demo__arena--layout" aria-label="Demonstração de grupos de formulário">
+  <app-form-group titulo="Grupos"
+    subtitulo="Vários grupos no mesmo formulário, em layout em grade responsivo (colapsáveis)."
+    [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)">
+    <div class="demo__arena-body">
+      <form class="demo__form demo__form--layout" [formGroup]="layoutForm" (ngSubmit)="onLayoutDemoSubmit($event)">
+        <app-form-group titulo="Pessoa" subtitulo="Dados pessoais de identificação e contato." [collapsible]="true"
+          [foldable]="false"
+          [collapsed]="layoutGrupoCollapsedState(LayoutGrupo.Pessoa)"
+          [groupInvalid]="layoutGrupoComErro(LayoutGrupo.Pessoa)"
+          (collapsedChange)="onLayoutGrupoCollapsedChange(LayoutGrupo.Pessoa, $event)">
+          <div [formGroupName]="LayoutGrupo.Pessoa">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch" [justify]="FormRowJustify.Start"
+              [wrap]="true">
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [formControlName]="LayoutPessoaField.NomeCompleto" id="layout-pessoa-nome"
+                  name="nomeCompleto" label="Nome completo" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-user" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-cpf-cnpj-field [formControlName]="LayoutPessoaField.Documento" id="layout-pessoa-doc"
+                  name="documento" label="CPF / CNPJ" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-id-card" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-date-field [formControlName]="LayoutPessoaField.DataNascimento" id="layout-pessoa-nasc"
+                  name="dataNascimento" label="Data de nascimento" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-calendar" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-phone-field [formControlName]="LayoutPessoaField.Telefone" id="layout-pessoa-tel" name="telefone"
+                  label="Celular" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen"
+                  [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Cliente" subtitulo="Endereço, notas e dados comerciais." [collapsible]="true"
+          [collapsed]="layoutGrupoCollapsedState(LayoutGrupo.Cliente)"
+          [groupInvalid]="layoutGrupoComErro(LayoutGrupo.Cliente)"
+          (collapsedChange)="onLayoutGrupoCollapsedChange(LayoutGrupo.Cliente, $event)">
+          <div [formGroupName]="LayoutGrupo.Cliente">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-cep-field [formControlName]="LayoutClienteField.Cep" id="layout-cliente-cep" name="cep"
+                  label="CEP da sede" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot"
+                  [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-select-field [formControlName]="LayoutClienteField.Uf" id="layout-cliente-uf" name="uf"
+                  label="UF (sede)" placeholder="UF" [options]="estados.estadoOptions" [pagination]="true"
+                  [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+                  [loadingMore]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [required]="true"
+                  [showPrefixIcon]="true" prefixIcon="fa-solid fa-map" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-decimal-field [formControlName]="LayoutClienteField.FaturamentoMensal" id="layout-cliente-fat"
+                  name="faturamentoMensal" label="Faturamento mensal (R$)" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-coins" [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-multiselect-field [formControlName]="LayoutClienteField.FiliaisAtuacao" id="layout-cliente-filiais"
+                  name="filiaisAtuacao" label="UFs de atuação" placeholder="Escolha um ou mais"
+                  [options]="estados.estadoOptions" [pagination]="true" [pageSize]="estados.pageSizeEstados"
+                  [hasMore]="estados.estadosHasMore" [loadingMore]="estados.estadosLoading"
+                  (pageRequested)="estadosPage.emit($event)" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-map-location-dot" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="12">
+                <app-dropdown-search-field [formControlName]="LayoutClienteField.EstadoSedeBusca"
+                  id="layout-cliente-busca" name="estadoSedeBusca" label="Estado da sede (pesquisa)"
+                  [options]="estados.buscaEstadoOptions" [pageSize]="estados.pageSizeBusca"
+                  [hasMore]="estados.buscaEstadosHasMore" [loadingMore]="estados.buscaEstadosLoading"
+                  (pageRequested)="estadosBuscaPage.emit($event)" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="12">
+                <app-textarea-field [formControlName]="LayoutClienteField.Observacoes" id="layout-cliente-obs"
+                  name="observacoes" label="Observações ao cliente" [rows]="3" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-align-left" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+          </div>
+        </app-form-group>
+
+        <app-form-group titulo="Usuário" subtitulo="Conta de acesso e preferências." [collapsible]="true"
+          [collapsed]="layoutGrupoCollapsedState(LayoutGrupo.Usuario)"
+          [groupInvalid]="layoutGrupoComErro(LayoutGrupo.Usuario)"
+          (collapsedChange)="onLayoutGrupoCollapsedChange(LayoutGrupo.Usuario, $event)">
+          <div [formGroupName]="LayoutGrupo.Usuario">
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [formControlName]="LayoutUsuarioField.Email" id="layout-usuario-email" name="email"
+                  label="E-mail" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-envelope"
+                  [clearable]="true" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-text-field [formControlName]="LayoutUsuarioField.Identificador" id="layout-usuario-login"
+                  name="identificador" label="Identificador (login)" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-at" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="12">
+                <app-integer-field [formControlName]="LayoutUsuarioField.NivelSuporte" id="layout-usuario-nivel"
+                  name="nivelSuporte" label="Nível de suporte" [required]="true" [showPrefixIcon]="true"
+                  prefixIcon="fa-solid fa-layer-group" [clearable]="true" />
+              </app-form-col>
+            </app-form-row>
+            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-col [xs]="12" [md]="6">
+                <app-checkbox-field [formControlName]="LayoutUsuarioField.AceiteComunicacoes" id="layout-usuario-aceite"
+                  name="aceiteComunicacoes" label="Aceito receber comunicações" />
+              </app-form-col>
+              <app-form-col [xs]="12" [md]="6">
+                <app-switch-field [formControlName]="LayoutUsuarioField.SessaoAtiva" id="layout-usuario-sessao"
+                  name="sessaoAtiva" label="Sessão ativa" />
+              </app-form-col>
+            </app-form-row>
+          </div>
+        </app-form-group>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12">
+            <app-layout-stack [align]="LayoutStackAlign.End" [stackDivider]="true">
+              <app-base-button [type]="BaseButtonType.Submit" [fullWidth]="true">Validar</app-base-button>
+            </app-layout-stack>
+          </app-form-col>
+        </app-form-row>
+      </form>
+
+      <section class="demo__preview" aria-label="Valores do formulário de layout">
+        <h3 class="demo__preview-title">Valores</h3>
+        <pre class="demo__json">{{ layoutForm.value | json }}</pre>
+      </section>
+    </div>
+  </app-form-group>
+</section>

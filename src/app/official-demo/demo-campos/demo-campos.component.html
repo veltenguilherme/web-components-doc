@@ -1,0 +1,229 @@
+<section class="demo__arena" aria-label="Demonstração de campos">
+  <app-form-group
+    titulo="Campos"
+    subtitulo="Campos com validação, máscaras, listas e valor espelhado ao lado — o essencial para formulários."
+    [collapsible]="true"
+    [skipBodyChildStacking]="true"
+    [collapsed]="collapsed"
+    (collapsedChange)="collapsedChange.emit($event)"
+  >
+    <ng-container *ngTemplateOutlet="demoCamposBody" />
+  </app-form-group>
+</section>
+
+<ng-template #demoCamposBody>
+  <div class="demo__arena-body">
+      <form class="demo__form" [formGroup]="form" (ngSubmit)="onDemoSubmit()">
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-text-field [formControlName]="DemoFormField.Texto" id="demo-texto" name="texto" label="Texto"
+              [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-font" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-text-field [formControlName]="DemoFormField.TextoRo" id="demo-texto-ro" name="textoRo" label="Texto"
+              [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-font" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-password-field [formControlName]="DemoFormField.Senha" id="demo-senha" name="senha" label="Senha"
+              placeholder="Senha" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-lock"
+              [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-password-field [formControlName]="DemoFormField.SenhaRo" id="demo-senha-ro" name="senhaRo"
+              label="Senha" placeholder="Senha" [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-lock"
+              [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-textarea-field [formControlName]="DemoFormField.Observacao" id="demo-obs" name="observacao"
+              label="Observação" placeholder="Detalhes opcionais" [required]="true" [showPrefixIcon]="true"
+              prefixIcon="fa-solid fa-align-left" [rows]="4" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-textarea-field [formControlName]="DemoFormField.ObservacaoRo" id="demo-obs-ro" name="observacaoRo"
+              label="Observação" placeholder="Detalhes opcionais" [readonly]="true" [showPrefixIcon]="true"
+              prefixIcon="fa-solid fa-align-left" [rows]="4" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-integer-field [formControlName]="DemoFormField.Inteiro" id="demo-inteiro" name="inteiro"
+              label="Inteiro" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-hashtag"
+              [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-integer-field [formControlName]="DemoFormField.InteiroRo" id="demo-inteiro-ro" name="inteiroRo"
+              label="Inteiro" [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-hashtag"
+              [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-decimal-field [formControlName]="DemoFormField.DecimalBr" id="demo-decimal" name="decimalBr"
+              label="Decimal" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-coins"
+              [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-decimal-field [formControlName]="DemoFormField.DecimalBrRo" id="demo-decimal-ro" name="decimalBrRo"
+              label="Decimal" [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-coins"
+              [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-date-field [formControlName]="DemoFormField.Data" id="demo-data" name="data" label="Data"
+              [required]="true" [showPrefixIcon]="true" [showTimeHours]="true" prefixIcon="fa-solid fa-calendar"
+              [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-date-field [formControlName]="DemoFormField.DataRo" id="demo-data-ro" name="dataRo" label="Data"
+              [readonly]="true" [showPrefixIcon]="true" [showTimeHours]="true" prefixIcon="fa-solid fa-calendar"
+              [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-cep-field [formControlName]="DemoFormField.Cep" id="demo-cep" name="cep" label="CEP"
+              [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-cep-field [formControlName]="DemoFormField.CepRo" id="demo-cep-ro" name="cepRo" label="CEP"
+              [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-cpf-cnpj-field [formControlName]="DemoFormField.CpfCnpj" id="demo-cpf-cnpj" name="cpfCnpj"
+              label="CPF / CNPJ" [showPrefixIcon]="true" prefixIcon="fa-solid fa-id-card" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-cpf-cnpj-field [formControlName]="DemoFormField.CpfCnpjRo" id="demo-cpf-cnpj-ro" name="cpfCnpjRo"
+              label="CPF / CNPJ" [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-id-card"
+              [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-phone-field [formControlName]="DemoFormField.Telefone" id="demo-telefone" name="telefone"
+              label="Celular" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-phone-field [formControlName]="DemoFormField.TelefoneRo" id="demo-telefone-ro" name="telefoneRo"
+              label="Celular" [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen"
+              [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-phone-field [formControlName]="DemoFormField.TelefoneFixo" id="demo-telefone-fixo" name="telefoneFixo"
+              label="Telefone" [landline]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-phone"
+              [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-phone-field [formControlName]="DemoFormField.TelefoneFixoRo" id="demo-telefone-fixo-ro"
+              name="telefoneFixoRo" label="Telefone" [landline]="true" [readonly]="true" [showPrefixIcon]="true"
+              prefixIcon="fa-solid fa-phone" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-select-field [formControlName]="DemoFormField.Estado" id="demo-estado" name="estado" label="Estado"
+              placeholder="Escolha o estado" [options]="estados.estadoOptions" [pagination]="true"
+              [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+              [loadingMore]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [required]="true"
+              [showPrefixIcon]="true" prefixIcon="fa-solid fa-map" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-select-field [formControlName]="DemoFormField.EstadoRo" id="demo-estado-ro" name="estadoRo"
+              label="Estado" placeholder="Escolha o estado" [options]="estados.estadoOptions" [pagination]="true"
+              [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+              [loadingMore]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [readonly]="true"
+              [showPrefixIcon]="true" prefixIcon="fa-solid fa-map" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-multiselect-field [formControlName]="DemoFormField.EstadosMulti" id="demo-estados-multi"
+              name="estadosMulti" label="Estados" placeholder="Escolha um ou mais" [options]="estados.estadoOptions"
+              [pagination]="true" [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+              [loadingMore]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [required]="true"
+              [showPrefixIcon]="true" prefixIcon="fa-solid fa-map-location-dot" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-multiselect-field [formControlName]="DemoFormField.EstadosMultiRo" id="demo-estados-multi-ro"
+              name="estadosMultiRo" label="Estados" placeholder="Escolha um ou mais" [options]="estados.estadoOptions"
+              [pagination]="true" [pageSize]="estados.pageSizeEstados" [hasMore]="estados.estadosHasMore"
+              [loadingMore]="estados.estadosLoading" (pageRequested)="estadosPage.emit($event)" [readonly]="true"
+              [showPrefixIcon]="true" prefixIcon="fa-solid fa-map-location-dot" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-dropdown-search-field [formControlName]="DemoFormField.EstadoBusca" id="demo-estado-busca"
+              name="estadoBusca" label="Estado" [options]="estados.buscaEstadoOptions"
+              [pageSize]="estados.pageSizeBusca" [hasMore]="estados.buscaEstadosHasMore"
+              [loadingMore]="estados.buscaEstadosLoading" (pageRequested)="estadosBuscaPage.emit($event)"
+              [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-dropdown-search-field [formControlName]="DemoFormField.EstadoBuscaRo" id="demo-estado-busca-ro"
+              name="estadoBuscaRo" label="Estado" [options]="estados.buscaEstadoOptions"
+              [pageSize]="estados.pageSizeBusca" [hasMore]="estados.buscaEstadosHasMore"
+              [loadingMore]="estados.buscaEstadosLoading" (pageRequested)="estadosBuscaPage.emit($event)"
+              [readonly]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-checkbox-field [formControlName]="DemoFormField.Aceite" id="demo-aceite" name="aceite"
+              label="Li e aceito os termos do exemplo" [required]="true" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-checkbox-field [formControlName]="DemoFormField.AceiteRo" id="demo-aceite-ro" name="aceiteRo"
+              label="Li e aceito os termos do exemplo" [readonly]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12" [md]="6">
+            <app-switch-field [formControlName]="DemoFormField.Ativo" id="demo-ativo" name="ativo" label="Ativo" />
+          </app-form-col>
+          <app-form-col [xs]="12" [md]="6">
+            <app-switch-field [formControlName]="DemoFormField.AtivoRo" id="demo-ativo-ro" name="ativoRo" label="Ativo"
+              [readonly]="true" />
+          </app-form-col>
+        </app-form-row>
+
+        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-col [xs]="12">
+            <app-layout-stack [stackDivider]="true" [align]="LayoutStackAlign.End">
+              <app-base-button [type]="BaseButtonType.Submit" [fullWidth]="true">Validar</app-base-button>
+              <app-base-button [type]="BaseButtonType.Button" [readonly]="true"
+                [fullWidth]="true">Validar</app-base-button>
+            </app-layout-stack>
+          </app-form-col>
+        </app-form-row>
+      </form>
+
+      <section class="demo__preview" aria-label="Valores do formulário de campos">
+        <h3 class="demo__preview-title">Valores</h3>
+        <pre class="demo__json">{{ form.value | json }}</pre>
+      </section>
+    </div>
+</ng-template>
