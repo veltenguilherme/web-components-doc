@@ -33,7 +33,11 @@ npm install structra-ui ag-grid-community ag-grid-angular
 Registre os módulos Community **uma vez** no `main.ts` (antes do `bootstrapApplication`):
 
 ```ts
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import {
+  AllCommunityModule,
+  ModuleRegistry,
+} from 'ag-grid-community';
+
 ModuleRegistry.registerModules([AllCommunityModule]);
 ```
 
