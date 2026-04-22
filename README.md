@@ -28,8 +28,6 @@ Com **grid (AG Grid)**:
 npm install structra-ui ag-grid-community ag-grid-angular
 ```
 
-(Sem versão fixa no comando — o npm usa a última compatível com o que já existe no projeto.)
-
 ## AG Grid
 
 Registre os módulos Community **uma vez** no `main.ts` (antes do `bootstrapApplication`):
