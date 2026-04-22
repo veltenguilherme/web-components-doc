@@ -1,53 +1,43 @@
 # Structra Docs (`structra-docs`)
 
-- Acesse: [StructraLab](https://structralab.com/)
+Site **Angular 21** que consome [**structra-ui**](https://www.npmjs.com/package/structra-ui) pelo npm. Showcase e demos — o código da lib fica no repo `web-components`.
 
-Site **Angular 21** que funciona como **showcase** da biblioteca [**structra-ui**](https://www.npmjs.com/package/structra-ui) instalada pelo **npm**. Aqui não existe fork da lib: só há a app de documentação, rotas e demos que **importam e usam** o pacote publicado.
+Link público: [StructraLab](https://structralab.com/).
 
-## Compatibilidade
-
-- **Angular 21** — alinhado aos **peer dependencies** atuais de `structra-ui` (pacotes `@angular/*` na linha **21.2.7**; ver o `package.json` do pacote no npm). Não há suporte para Angular 22.
-- **AG Grid:** se a demo usar grades, siga a linha indicada nos peers da lib (hoje **35.x**).
-
-## Histórico de versões (resumo)
-
-| Período | `structra-ui` (npm) | Angular |
-|--------|----------------------|---------|
-| Série atual | conforme `package.json` deste repositório | **21** |
-| Séries antigas | versões mais antigas no npm | **17** (legado) |
-
-Para listar todas as versões publicadas: `npm view structra-ui versions`. Notas por release: separador **Versions** / changelog no [npm](https://www.npmjs.com/package/structra-ui).
-
-## O que este repositório é (e o que não é)
-
-- **É:** uma aplicação Angular que declara `structra-ui` no `package.json` (por exemplo `^0.1.8`) e consome componentes, serviços e utilitários **somente** por esse pacote.
-- **Não é:** o código-fonte da biblioteca — isso acompanha o ciclo de release do próprio pacote `structra-ui`.
-
-## Instalação
-
-Na pasta do repositório:
+## Instalar este repositório
 
 ```bash
 npm install
 ```
 
-Isso instala o `structra-ui` a partir do registro npm, na versão fixada no `package.json`. Para atualizar só a biblioteca:
+Para atualizar só a lib:
 
 ```bash
 npm update structra-ui
 ```
 
-Para ver a última versão publicada:
+## Outro projeto Angular
 
 ```bash
-npm view structra-ui version
+npm install structra-ui
 ```
 
-## Estilos globais (tema)
+Com **grid (AG Grid)**:
 
-Os componentes precisam dos **estilos globais** indicados na documentação do **`structra-ui`** (tokens, tema Material, ag-Grid, overlays do CDK, etc.). No `angular.json`, a lista em `styles` deve seguir o que o pacote orientar — costuma haver um ou mais arquivos SCSS/CSS de tema além do `src/styles.scss` deste site.
+```bash
+npm install structra-ui ag-grid-community ag-grid-angular
+```
 
-O arquivo **`src/styles.scss`** guarda só ajustes **mínimos** da própria documentação (por exemplo cores de fundo da página), sem duplicar a implementação da biblioteca.
+(Sem versão fixa no comando — o npm usa a última compatível com o que já existe no projeto.)
+
+## AG Grid
+
+Registre os módulos Community **uma vez** no `main.ts` (antes do `bootstrapApplication`):
+
+```ts
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+ModuleRegistry.registerModules([AllCommunityModule]);
+```
 
 ## Rodar em desenvolvimento
 
@@ -55,23 +45,16 @@ O arquivo **`src/styles.scss`** guarda só ajustes **mínimos** da própria docu
 npm start
 ```
 
-Por padrão o Angular sobe em **`http://localhost:4200/`**. A rota principal exibe o showcase de componentes (demos em `src/app/official-demo/`).
+Por padrão: `http://localhost:4200/`.
 
+## Estilos / tema
 
-Configuração global da app: **`src/app/app.config.ts`** — por exemplo `provideAnimations()`, `MAT_DATE_LOCALE` e demais providers exigidos pelos componentes.
+Veja o [README do pacote no npm](https://www.npmjs.com/package/structra-ui). O `src/styles.scss` deste site só tem ajustes mínimos da documentação.
 
-## Estrutura de pastas (resumo)
+## Compatibilidade
 
-```
-src/
-  app/
-    app.component.*      # shell mínimo (toast + router-outlet)
-    app.config.ts
-    app.routes.ts
-    official-demo/       # demos: abas, formulário, grid, menus, diálogo, etc. (tudo via structra-ui)
-  styles.scss            # ajustes leves só do site de documentação
-```
+Angular e AG Grid precisam bater com os **peer dependencies** do `structra-ui` (veja o `package.json` do pacote no npm).
 
 ## Licença
 
-MIT, alinhado ao ecossistema Structra quando aplicável.
+MIT
