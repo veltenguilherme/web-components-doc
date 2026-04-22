@@ -49,14 +49,6 @@ npm start
 
 Por padrão: `http://localhost:4200/`.
 
-## Estilos / tema
-
-Veja o [README do pacote no npm](https://www.npmjs.com/package/structra-ui). O `src/styles.scss` deste site só tem ajustes mínimos da documentação.
-
-## Compatibilidade
-
-Angular e AG Grid precisam bater com os **peer dependencies** do `structra-ui` (veja o `package.json` do pacote no npm).
-
 ## Licença
 
 MIT
