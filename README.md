@@ -1,8 +1,8 @@
 # Structra Docs (`structra-docs`)
 
-Site **Angular 21** que consome [**structra-ui**](https://www.npmjs.com/package/structra-ui) pelo npm. Showcase e demos — o código da lib fica no repo `web-components`.
+Site **Angular 21** que consome a lib [**structra-ui**](https://www.npmjs.com/package/structra-ui) pelo npm. Showcase e demos.
 
-Link público: [StructraLab](https://structralab.com/).
+Site oficial: [StructraLab](https://structralab.com/).
 
 ## Instalar este repositório
 
