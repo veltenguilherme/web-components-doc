@@ -2,7 +2,21 @@
 
 - Acesse: [StructraLab](https://structralab.com/)
 
-Site **Angular 17** que funciona como **showcase** da biblioteca [**structra-ui**](https://www.npmjs.com/package/structra-ui) instalada pelo **npm**. Aqui não existe fork da lib: só há a app de documentação, rotas e demos que **importam e usam** o pacote publicado.
+Site **Angular 21** que funciona como **showcase** da biblioteca [**structra-ui**](https://www.npmjs.com/package/structra-ui) instalada pelo **npm**. Aqui não existe fork da lib: só há a app de documentação, rotas e demos que **importam e usam** o pacote publicado.
+
+## Compatibilidade
+
+- **Angular 21** — alinhado aos **peer dependencies** actuais de `structra-ui` (pacotes `@angular/*` na linha **21.2.7**; ver o `package.json` do pacote no npm). Não há suporte para Angular 22.
+- **AG Grid:** se a demo usar grades, siga a linha indicada nos peers da lib (hoje **35.x**).
+
+## Histórico de versões (resumo)
+
+| Época | `structra-ui` (npm) | Angular |
+|--------|----------------------|---------|
+| Série actual | conforme `package.json` deste repo | **21** |
+| Séries antigas | versões mais antigas no npm | **17** (legado) |
+
+Para listar todas as versões publicadas: `npm view structra-ui versions`. Notas por release: separador **Versions** / changelog no [npm](https://www.npmjs.com/package/structra-ui).
 
 ## O que este repositório é (e o que não é)
 
