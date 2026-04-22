@@ -47,8 +47,6 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 npm start
 ```
 
-Por padrão: `http://localhost:4200/`.
-
 ## Licença
 
 MIT
