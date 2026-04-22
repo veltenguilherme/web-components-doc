@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+﻿import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -24,7 +24,7 @@ import {
   type DataGridColumn,
   type CardListMapFn,
 } from 'structra-ui';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import { TextFieldComponent } from 'structra-ui';
 import {
   FormActionsAlign,
@@ -33,7 +33,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   LayoutStackAlign,
   LayoutStackComponent,
   ValidationSummaryComponent,
@@ -61,7 +61,7 @@ const FAT_DEMO_META: Record<string, { label: string; fieldId: string }> = {
     ReactiveFormsModule,
     JsonPipe,
     TextFieldComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     FormActionsComponent,
     LayoutStackComponent,
     FormColComponent,
@@ -89,7 +89,7 @@ export class DemoFormActionsToolbarComponent implements OnInit {
   readonly BaseButtonType = BaseButtonType;
   readonly FormActionsAlign = FormActionsAlign;
   readonly LayoutStackAlign = LayoutStackAlign;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
 
   /** Mobile = cards, desktop = grid (redimensione a janela para ver a troca). */

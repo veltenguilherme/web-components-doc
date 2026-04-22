@@ -1,4 +1,4 @@
-@use '../demo-sections/demo-sections.scss' as *;
+﻿@use '../demo-sections/demo-sections.scss' as *;
 
 :host {
   display: block;
@@ -18,7 +18,7 @@
   width: 100%;
 }
 
-:host ::ng-deep app-form-actions.demo-fat__form-actions-wide .layout-stack__track > app-base-button {
+:host ::ng-deep app-form-actions.demo-fat__form-actions-wide .layout-stack__track > app-button {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -67,7 +67,7 @@
   box-sizing: border-box;
 }
 
-:host ::ng-deep .demo-fat__btn-stack app-base-button {
+:host ::ng-deep .demo-fat__btn-stack app-button {
   display: block;
   flex: 1 1 0;
   min-width: 0;

@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+﻿import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import { ConfirmDialogService } from 'structra-ui';
 import { TextFieldComponent } from 'structra-ui';
 import {
@@ -29,7 +29,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   LayoutStackAlign,
   LayoutStackComponent,
   ValidationSummaryComponent,
@@ -56,7 +56,7 @@ const CARD_LIST_DEMO_META: Record<string, { label: string; fieldId: string }> = 
     ReactiveFormsModule,
     JsonPipe,
     TextFieldComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     LayoutStackComponent,
     FormColComponent,
     FormGroupComponent,
@@ -81,7 +81,7 @@ export class DemoCardListComponent implements OnInit {
 
   readonly BaseButtonType = BaseButtonType;
   readonly LayoutStackAlign = LayoutStackAlign;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
 
   readonly form = this.fb.group({

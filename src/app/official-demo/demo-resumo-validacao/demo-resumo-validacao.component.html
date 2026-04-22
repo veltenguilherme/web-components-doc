@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de resumo de validação">
+﻿<section class="demo__arena" aria-label="Demonstração de resumo de validação">
   <app-form-group
     titulo="Resumo de validações"
     subtitulo="Lista de erros ao validar; toque num item para ir ao campo correspondente."
@@ -33,7 +33,7 @@
         [collapsed]="false"
       >
         <div formGroupName="identificacao">
-          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
             <app-form-col [xs]="12" [md]="6">
               <app-text-field
                 formControlName="nome"
@@ -70,7 +70,7 @@
         [collapsed]="true"
       >
         <div formGroupName="preferencias">
-          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
             <app-form-col [xs]="12" [md]="6">
               <app-checkbox-field
                 formControlName="aceite"
@@ -96,12 +96,12 @@
         </div>
       </app-form-group>
 
-      <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+      <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
         <app-form-col [xs]="12">
           <div class="demo__validar-toolbar">
-            <app-base-button class="demo__validar-toolbar-btn" [type]="BaseButtonType.Submit" [fullWidth]="true">
+            <app-button class="demo__validar-toolbar-btn" [type]="BaseButtonType.Submit" [fullWidth]="true">
               Validar
-            </app-base-button>
+            </app-button>
             <app-switch-field
               class="demo__validar-toolbar-switch"
               [(ngModel)]="summaryPinned"

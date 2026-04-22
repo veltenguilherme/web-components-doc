@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import {
-  BaseButtonComponent,
+  ButtonComponent,
   BaseButtonType,
   BaseButtonVariant,
 } from 'structra-ui';
@@ -45,7 +45,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   LayoutStackAlign,
   LayoutStackComponent,
 } from 'structra-ui';
@@ -66,7 +66,7 @@ import {
     FormRowComponent,
     FormColComponent,
     LayoutStackComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     DropdownMenuComponent,
     ActionMenuComponent,
     ContextMenuComponent,
@@ -101,7 +101,7 @@ export class DemoMenusComponent {
 
   readonly BaseButtonType = BaseButtonType;
   readonly BaseButtonVariant = BaseButtonVariant;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly LayoutStackAlign = LayoutStackAlign;
   readonly MenuDropdownPlacement = MenuDropdownPlacement;

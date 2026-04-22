@@ -1,11 +1,11 @@
+// Rolar no `document` (body), não aqui: com `min-height: 100vh` + `overflow-y: auto` no host
+// e sem `max-height`, o bloco cresce com o conteúdo e fica a ser cortado por `body{overflow:hidden}`
+// vindo do CSS do pacote — o scroll nunca aparecia. Ver `src/styles.scss`.
 :host {
   display: block;
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .demo {

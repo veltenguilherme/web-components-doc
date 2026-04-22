@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de campos">
+﻿<section class="demo__arena" aria-label="Demonstração de campos">
   <app-form-group
     titulo="Campos"
     subtitulo="Campos com validação, máscaras, listas e valor espelhado ao lado — o essencial para formulários."
@@ -14,7 +14,7 @@
 <ng-template #demoCamposBody>
   <div class="demo__arena-body">
       <form class="demo__form" [formGroup]="form" (ngSubmit)="onDemoSubmit()">
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-text-field [formControlName]="DemoFormField.Texto" id="demo-texto" name="texto" label="Texto"
               [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-font" [clearable]="true" />
@@ -25,7 +25,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-password-field [formControlName]="DemoFormField.Senha" id="demo-senha" name="senha" label="Senha"
               placeholder="Senha" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-lock"
@@ -38,7 +38,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-textarea-field [formControlName]="DemoFormField.Observacao" id="demo-obs" name="observacao"
               label="Observação" placeholder="Detalhes opcionais" [required]="true" [showPrefixIcon]="true"
@@ -51,7 +51,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-integer-field [formControlName]="DemoFormField.Inteiro" id="demo-inteiro" name="inteiro"
               label="Inteiro" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-hashtag"
@@ -64,7 +64,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-decimal-field [formControlName]="DemoFormField.DecimalBr" id="demo-decimal" name="decimalBr"
               label="Decimal" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-coins"
@@ -77,7 +77,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-date-field [formControlName]="DemoFormField.Data" id="demo-data" name="data" label="Data"
               [required]="true" [showPrefixIcon]="true" [showTimeHours]="true" prefixIcon="fa-solid fa-calendar"
@@ -90,7 +90,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-cep-field [formControlName]="DemoFormField.Cep" id="demo-cep" name="cep" label="CEP"
               [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot" [clearable]="true" />
@@ -101,7 +101,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-cpf-cnpj-field [formControlName]="DemoFormField.CpfCnpj" id="demo-cpf-cnpj" name="cpfCnpj"
               label="CPF / CNPJ" [showPrefixIcon]="true" prefixIcon="fa-solid fa-id-card" [clearable]="true" />
@@ -113,7 +113,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-phone-field [formControlName]="DemoFormField.Telefone" id="demo-telefone" name="telefone"
               label="Celular" [showPrefixIcon]="true" prefixIcon="fa-solid fa-mobile-screen" [clearable]="true" />
@@ -125,7 +125,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-phone-field [formControlName]="DemoFormField.TelefoneFixo" id="demo-telefone-fixo" name="telefoneFixo"
               label="Telefone" [landline]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-phone"
@@ -138,7 +138,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-select-field [formControlName]="DemoFormField.Estado" id="demo-estado" name="estado" label="Estado"
               placeholder="Escolha o estado" [options]="estados.estadoOptions" [pagination]="true"
@@ -155,7 +155,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-multiselect-field [formControlName]="DemoFormField.EstadosMulti" id="demo-estados-multi"
               name="estadosMulti" label="Estados" placeholder="Escolha um ou mais" [options]="estados.estadoOptions"
@@ -172,7 +172,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-dropdown-search-field [formControlName]="DemoFormField.EstadoBusca" id="demo-estado-busca"
               name="estadoBusca" label="Estado" [options]="estados.buscaEstadoOptions"
@@ -189,7 +189,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-checkbox-field [formControlName]="DemoFormField.Aceite" id="demo-aceite" name="aceite"
               label="Li e aceito os termos do exemplo" [required]="true" />
@@ -200,7 +200,7 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [md]="6">
             <app-switch-field [formControlName]="DemoFormField.Ativo" id="demo-ativo" name="ativo" label="Ativo" />
           </app-form-col>
@@ -210,12 +210,12 @@
           </app-form-col>
         </app-form-row>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12">
             <app-layout-stack [stackDivider]="true" [align]="LayoutStackAlign.End">
-              <app-base-button [type]="BaseButtonType.Submit" [fullWidth]="true">Validar</app-base-button>
-              <app-base-button [type]="BaseButtonType.Button" [readonly]="true"
-                [fullWidth]="true">Validar</app-base-button>
+              <app-button [type]="BaseButtonType.Submit" [fullWidth]="true">Validar</app-button>
+              <app-button [type]="BaseButtonType.Button" [readonly]="true"
+                [fullWidth]="true">Validar</app-button>
             </app-layout-stack>
           </app-form-col>
         </app-form-row>

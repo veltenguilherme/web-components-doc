@@ -1,4 +1,4 @@
-@use '../demo-sections/demo-sections.scss' as *;
+﻿@use '../demo-sections/demo-sections.scss' as *;
 
 :host {
   display: block;
@@ -86,7 +86,7 @@
       padding-top: 0.35rem;
       border-top: 1px dashed var(--app-color-border-subtle, rgba(26, 47, 69, 0.12));
 
-      > app-base-button {
+      > app-button {
         flex: 1 1 100%;
         width: 100%;
         min-width: 0;

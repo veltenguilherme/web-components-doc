@@ -24,7 +24,7 @@ npm install structra-ui
 
 ## AG Grid
 
-Registre os módulos Community **uma vez** no `main.ts` (antes do `bootstrapApplication`):
+Neste repositório o registo dos módulos Community **já está** em `src/main.ts` (necessário para as demos de `DataGrid` da lib; ver também o package [`structra-ui`](https://www.npmjs.com/package/structra-ui) no npm). Em outro projecto Angular, faça o mesmo **uma vez** antes do `bootstrapApplication`:
 
 ```ts
 import {

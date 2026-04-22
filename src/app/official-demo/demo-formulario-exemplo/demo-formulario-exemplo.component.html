@@ -21,7 +21,7 @@
           <app-form-group titulo="Identificação" subtitulo="Documentos e tipo de pessoa." formGroupPath="identificacao"
             [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="false">
             <div formGroupName="identificacao">
-              <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                 <app-form-col [xs]="12" [md]="8">
                   <app-text-field [loading]="clienteSalvarLoading" formControlName="razaoSocial" id="demo-cli-razao"
                     name="cliRazao" label="Razão social / Nome" [required]="true" [showPrefixIcon]="true"
@@ -64,7 +64,7 @@
             formGroupPath="contatoPrincipal" [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading"
             [collapsed]="true" [destroyOnCollapse]="true">
             <div formGroupName="contatoPrincipal">
-              <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                 <app-form-col [xs]="12" [md]="6">
                   <app-text-field [loading]="clienteSalvarLoading" formControlName="email" id="demo-cli-email"
                     name="cliEmail" label="E-mail" [required]="true" [showPrefixIcon]="true"
@@ -96,7 +96,7 @@
           [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="true"
           [showDivider]="true">
           <div formGroupName="endereco">
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12" [md]="3">
                 <app-cep-field [loading]="clienteSalvarLoading" formControlName="cep" id="demo-cli-cep" name="cliCep"
                   label="CEP" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-location-dot"
@@ -146,7 +146,7 @@
           formGroupPath="comercial" [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading"
           [collapsed]="true" [showDivider]="true">
           <div formGroupName="comercial">
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12" [md]="4">
                 <app-decimal-field [loading]="clienteSalvarLoading" formControlName="limiteCredito" id="demo-cli-limite"
                   name="cliLimite" label="Limite de crédito (R$)" [showPrefixIcon]="true"
@@ -182,7 +182,7 @@
           formGroupPath="preferencias" [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading"
           [collapsed]="true" [showDivider]="true">
           <div formGroupName="preferencias">
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12" [md]="4">
                 <app-checkbox-field [loading]="clienteSalvarLoading" formControlName="aceitaComunicacoes"
                   id="demo-cli-aceite-com" name="cliAceiteCom" label="Aceita comunicações" />
@@ -229,7 +229,7 @@
                   formGroupPath="abasCliente.obrigatorio" [collapsible]="true" [foldable]="true"
                   [disabled]="clienteSalvarLoading" [collapsed]="false">
                   <div formGroupName="obrigatorio">
-                    <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                    <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                       <app-form-col [xs]="12" [md]="6">
                         <app-text-field [loading]="clienteSalvarLoading" formControlName="referenciaInterna"
                           id="demo-cli-abas-ref" name="cliAbasRef" label="Referência interna" [required]="true"
@@ -250,12 +250,12 @@
                   formGroupPath="abasCliente.opcional" [collapsible]="true" [foldable]="true"
                   [disabled]="clienteSalvarLoading" [collapsed]="false">
                   <div formGroupName="opcional">
-                    <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                    <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                       <app-form-col [xs]="12">
                         <app-textarea-field [loading]="clienteSalvarLoading" formControlName="notasAdicionais"
                           id="demo-cli-abas-notas" name="cliAbasNotas" label="Notas adicionais" [rows]="3" />
                       </app-form-col>
-                      <app-form-col [xs]="12" [md]="6">
+                      <app-form-col [xs]="12">
                         <app-text-field [loading]="clienteSalvarLoading" formControlName="codigoConvenio"
                           id="demo-cli-abas-convenio" name="cliAbasConv" label="Código de convênio"
                           [showPrefixIcon]="true" prefixIcon="fa-solid fa-ticket" [clearable]="true" />
@@ -272,7 +272,7 @@
           [disabled]="clienteSalvarLoading" [collapsed]="true" [showDivider]="true"
           [groupInvalid]="grupoContatosParentInvalido()">
           <div [formGroup]="contatoEdicaoForm" #contatoEdicaoFormDir="ngForm">
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12" [md]="6">
                 <app-text-field [loading]="clienteSalvarLoading" formControlName="nome" id="demo-cli-ct-nome"
                   name="cliCtNome" label="Nome" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-user"
@@ -303,18 +303,18 @@
                   name="cliCtAtivo" label="Ativo" />
               </app-form-col>
             </app-form-row>
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12">
                 <app-layout-stack [stackDivider]="false" [align]="LayoutStackAlign.Start">
-                  <app-base-button [type]="BaseButtonType.Button" [readonly]="clienteSalvarLoading"
+                  <app-button [type]="BaseButtonType.Button" [readonly]="clienteSalvarLoading"
                     (click)="onAcaoPrincipalContato()">
                     {{ labelBotaoPrincipalContato }}
-                  </app-base-button>
+                  </app-button>
                   @if (contatoEdicaoId != null) {
-                  <app-base-button [type]="BaseButtonType.Button" [readonly]="clienteSalvarLoading"
+                  <app-button [type]="BaseButtonType.Button" [readonly]="clienteSalvarLoading"
                     (click)="onCancelarContatoEdicao()">
                     Cancelar
-                  </app-base-button>
+                  </app-button>
                   }
                 </app-layout-stack>
               </app-form-col>
@@ -331,9 +331,9 @@
         </app-form-group>
 
         <app-form-actions [align]="FormActionsAlign.Start" [divider]="true">
-          <app-base-button [type]="BaseButtonType.Submit" [readonly]="clienteSalvarLoading">
+          <app-button [type]="BaseButtonType.Submit" [readonly]="clienteSalvarLoading">
             Salvar
-          </app-base-button>
+          </app-button>
         </app-form-actions>
       </app-form-section>
 

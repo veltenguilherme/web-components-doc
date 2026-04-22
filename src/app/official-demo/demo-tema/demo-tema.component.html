@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de temas">
+﻿<section class="demo__arena" aria-label="Demonstração de temas">
   <app-form-group titulo="Tema"
     subtitulo="Cores por tokens; escolha um tema e veja campos, abas e grade a seguirem a paleta."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -10,11 +10,11 @@
         </p>
         <div class="demo-tema__toolbar-themes" role="group" aria-label="Selecionar tema">
           @for (opt of themeIds; track opt.id) {
-          <app-base-button [type]="BaseButtonType.Button" class="demo-tema__theme-btn" [fullWidth]="false"
+          <app-button [type]="BaseButtonType.Button" class="demo-tema__theme-btn" [fullWidth]="false"
             [variant]="theme.isActive(opt.id) ? BaseButtonVariant.Primary : BaseButtonVariant.Secondary"
             (click)="setTheme(opt.id)">
             {{ opt.label }}
-          </app-base-button>
+          </app-button>
           }
         </div>
       </div>
@@ -35,7 +35,7 @@
         <app-form-group titulo="Campos de exemplo"
           subtitulo="Normal, só leitura, desligado e inválido — o último campo começa em erro de propósito."
           [collapsible]="false" [foldable]="false">
-          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
             <app-form-col [xs]="12" [md]="6">
               <app-integer-field formControlName="quantidade" id="demo-tema-qty" name="demoTemaQty" label="Quantidade"
                 [required]="true" [clearable]="true" />
@@ -63,7 +63,7 @@
           </app-form-row>
         </app-form-group>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [lg]="6">
             <h3 class="demo-tema__h">Grid</h3>
             <app-data-grid [rows]="gridRows" [columns]="gridColumns" [pageSize]="5" [pagination]="true"
@@ -77,10 +77,10 @@
         </app-form-row>
 
         <app-form-actions [align]="FormActionsAlign.End" [divider]="true">
-          <app-base-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Secondary"
-            [fullWidth]="false">Secundário</app-base-button>
-          <app-base-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Primary"
-            [fullWidth]="false">Primário</app-base-button>
+          <app-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Secondary"
+            [fullWidth]="false">Secundário</app-button>
+          <app-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Primary"
+            [fullWidth]="false">Primário</app-button>
         </app-form-actions>
       </form>
     </div>

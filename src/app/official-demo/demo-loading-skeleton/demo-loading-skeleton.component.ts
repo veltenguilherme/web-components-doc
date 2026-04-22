@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -9,7 +9,7 @@ import {
   inject,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import {
   CardListComponent,
   DataGridComponent,
@@ -47,7 +47,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
 } from 'structra-ui';
 import {
   type PessoaGridItem,
@@ -60,7 +60,7 @@ import { DEMO_SIMULATED_IO_GRID_MS } from '../_utils/demo-async-sim.util';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    BaseButtonComponent,
+    ButtonComponent,
     FormGroupComponent,
     FormRowComponent,
     FormColComponent,
@@ -93,7 +93,7 @@ export class DemoLoadingSkeletonComponent implements OnInit {
   @Output() readonly collapsedChange = new EventEmitter<boolean>();
 
   readonly BaseButtonType = BaseButtonType;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
 
   readonly form = this.fb.group({

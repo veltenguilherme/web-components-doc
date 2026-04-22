@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de form actions e data toolbar">
+﻿<section class="demo__arena" aria-label="Demonstração de form actions e data toolbar">
   <app-form-group titulo="Form Actions / Toolbar"
     subtitulo="Ações de formulário, barra de pesquisa e visualização em lista ou grade conforme a tela."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -14,7 +14,7 @@
                 [items]="summaryItems" panelMaxHeight="min(32vh, 10rem)" [showCloseButton]="true"
                 (panelClose)="onCloseSummaryPanel()" />
 
-              <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+              <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                 <app-form-col [xs]="12" [md]="6">
                   <app-text-field formControlName="nome" id="demo-fat-nome" name="fatNome" label="Nome"
                     [required]="true" [showErrorMessage]="true" errorMessage="Nome é obrigatório."
@@ -30,13 +30,13 @@
 
               <app-form-actions class="demo-fat__form-actions-wide" [align]="FormActionsAlign.Start"
                 [fill]="false" [divider]="false">
-                <app-base-button [type]="BaseButtonType.Submit">
+                <app-button [type]="BaseButtonType.Submit">
                   {{ primaryButtonLabel }}
-                </app-base-button>
+                </app-button>
                 @if (editingId != null) {
-                <app-base-button [type]="BaseButtonType.Button" (click)="cancelarEdicao()">
+                <app-button [type]="BaseButtonType.Button" (click)="cancelarEdicao()">
                   Cancelar
-                </app-base-button>
+                </app-button>
                 }
               </app-form-actions>
             </app-layout-stack>
@@ -60,12 +60,12 @@
                         [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
                     </div>
                     <div class="demo-fat__btn-stack">
-                      <app-base-button [type]="BaseButtonType.Button" (click)="onPesquisar()">
+                      <app-button [type]="BaseButtonType.Button" (click)="onPesquisar()">
                         Pesquisar
-                      </app-base-button>
-                      <app-base-button [type]="BaseButtonType.Button" (click)="onLimparConsulta()">
+                      </app-button>
+                      <app-button [type]="BaseButtonType.Button" (click)="onLimparConsulta()">
                         Limpar
-                      </app-base-button>
+                      </app-button>
                     </div>
                   </div>
                 </app-data-toolbar>

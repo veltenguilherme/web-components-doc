@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -17,13 +17,13 @@ import {
   ToastService,
 } from 'structra-ui';
 import { demoSimulatedDelay, DEMO_SIMULATED_IO_GRID_MS } from '../_utils/demo-async-sim.util';
-import { BaseButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
+import { ButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
 import {
   FormColComponent,
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
 } from 'structra-ui';
 
 @Component({
@@ -35,7 +35,7 @@ import {
     FormColComponent,
     AppDialogComponent,
     DialogFooterDirective,
-    BaseButtonComponent,
+    ButtonComponent,
   ],
   templateUrl: './demo-dialogs-notifications.component.html',
   styleUrl: './demo-dialogs-notifications.component.scss',
@@ -50,7 +50,7 @@ export class DemoDialogsNotificationsComponent {
   private readonly loadingDialog = inject(LoadingDialogService);
   private readonly toast = inject(ToastService);
 
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly LibDialogSize = LibDialogSize;
   readonly BaseButtonType = BaseButtonType;

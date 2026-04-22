@@ -1,4 +1,4 @@
-import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+﻿import { JsonPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import {
   CheckboxFieldComponent,
   SwitchFieldComponent,
@@ -31,7 +31,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   ValidationSummaryComponent,
   type ValidationSummaryItem,
 } from 'structra-ui';
@@ -60,7 +60,7 @@ const RESUMO_FIELD_META = {
     IntegerFieldComponent,
     CheckboxFieldComponent,
     SwitchFieldComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     FormColComponent,
     FormGroupComponent,
     FormRowComponent,
@@ -85,7 +85,7 @@ export class DemoResumoValidacaoComponent implements OnInit {
   @Output() readonly collapsedChange = new EventEmitter<boolean>();
 
   readonly BaseButtonType = BaseButtonType;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
 
   readonly form = this.fb.group({

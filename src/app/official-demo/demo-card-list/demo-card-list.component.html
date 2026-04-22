@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de card list">
+﻿<section class="demo__arena" aria-label="Demonstração de card list">
   <app-form-group titulo="Card List"
     subtitulo="Lista em cartões com pesquisa e ações — dados em memória (demo)."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -13,7 +13,7 @@
               [items]="summaryItems" panelMaxHeight="min(32vh, 10rem)" [showCloseButton]="true"
               (panelClose)="onCloseSummaryPanel()" />
 
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12" [md]="6">
                 <app-text-field formControlName="nome" id="demo-card-list-nome" name="cardListNome" label="Nome"
                   [required]="true" [showErrorMessage]="true" errorMessage="Nome é obrigatório." [showPrefixIcon]="true"
@@ -26,16 +26,16 @@
               </app-form-col>
             </app-form-row>
 
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12">
                 <app-layout-stack [stackDivider]="false" [align]="LayoutStackAlign.Start">
-                  <app-base-button [type]="BaseButtonType.Submit">
+                  <app-button [type]="BaseButtonType.Submit">
                     {{ primaryButtonLabel }}
-                  </app-base-button>
+                  </app-button>
                   @if (editingId != null) {
-                  <app-base-button [type]="BaseButtonType.Button" (click)="cancelarEdicao()">
+                  <app-button [type]="BaseButtonType.Button" (click)="cancelarEdicao()">
                     Cancelar edição
-                  </app-base-button>
+                  </app-button>
                   }
                 </app-layout-stack>
               </app-form-col>
@@ -51,7 +51,7 @@
           subtitulo="Nome ou sobrenome; botão Pesquisar aplica o filtro."
           formGroupPath="consulta" [collapsible]="true" [collapsed]="true">
           <div formGroupName="consulta">
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12" [md]="6">
                 <app-text-field formControlName="nome" id="demo-card-list-consulta-nome" name="cardListConsultaNome"
                   label="Nome" [showPrefixIcon]="true" prefixIcon="fa-solid fa-magnifying-glass" [clearable]="true" />
@@ -63,15 +63,15 @@
               </app-form-col>
             </app-form-row>
 
-            <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+            <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
               <app-form-col [xs]="12">
                 <app-layout-stack [stackDivider]="false" [align]="LayoutStackAlign.Start">
-                  <app-base-button [type]="BaseButtonType.Button" (click)="onPesquisar()">
+                  <app-button [type]="BaseButtonType.Button" (click)="onPesquisar()">
                     Pesquisar
-                  </app-base-button>
-                  <app-base-button [type]="BaseButtonType.Button" (click)="onLimparConsulta()">
+                  </app-button>
+                  <app-button [type]="BaseButtonType.Button" (click)="onLimparConsulta()">
                     Limpar
-                  </app-base-button>
+                  </app-button>
                 </app-layout-stack>
               </app-form-col>
             </app-form-row>

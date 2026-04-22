@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -25,7 +25,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import {
   ConfirmDialogService,
   LoadingDialogService,
@@ -69,7 +69,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   FormSectionComponent,
   FormTabComponent,
   FormTabsComponent,
@@ -143,7 +143,7 @@ type ClienteListaGridRow = {
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    BaseButtonComponent,
+    ButtonComponent,
     LayoutStackComponent,
     FormGroupComponent,
     FormSectionComponent,
@@ -196,7 +196,7 @@ export class DemoFormularioExemploComponent implements OnInit {
 
   readonly BaseButtonType = BaseButtonType;
   readonly LayoutStackAlign = LayoutStackAlign;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly FormActionsAlign = FormActionsAlign;
 

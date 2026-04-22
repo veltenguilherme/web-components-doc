@@ -1,4 +1,4 @@
-import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+﻿import { JsonPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -34,7 +34,7 @@ import {
   type DropdownSearchPageRequested,
   type SelectPageRequested,
 } from 'structra-ui';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import {
   LayoutStackAlign,
   LayoutStackComponent,
@@ -42,7 +42,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
 } from 'structra-ui';
 import { DemoFormField } from '../_enums/demo-form-field.enum';
 import { DemoEstadosBindings } from '../_models/demo-estados-bindings.model';
@@ -95,7 +95,7 @@ const DEMO_EDITABLE_TO_READONLY_PAIRS = [
     SelectFieldComponent,
     MultiselectFieldComponent,
     DropdownSearchFieldComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     LayoutStackComponent,
     FormColComponent,
     FormGroupComponent,
@@ -120,7 +120,7 @@ export class DemoCamposComponent implements OnInit {
   readonly DemoFormField = DemoFormField;
   readonly BaseButtonType = BaseButtonType;
   readonly LayoutStackAlign = LayoutStackAlign;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
 
   readonly form = this.fb.group({

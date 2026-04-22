@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -16,7 +16,7 @@ import {
   AppUserMenuComponent,
   type BreadcrumbItem,
 } from 'structra-ui';
-import { BaseButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
+import { ButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
 import {
   FormGroupComponent,
   LayoutStackComponent,
@@ -37,7 +37,7 @@ import type { MenuNodeItem } from 'structra-ui';
     AppTopbarComponent,
     AppUserMenuComponent,
     AppBreadcrumbComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     LayoutStackComponent,
   ],
   templateUrl: './demo-app-shell.component.html',

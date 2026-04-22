@@ -1,4 +1,8 @@
-import { importProvidersFrom, ApplicationConfig } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DialogModule } from '@angular/cdk/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -9,6 +13,7 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimations(),
     importProvidersFrom(OverlayModule, DialogModule),

@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de loading e skeleton">
+﻿<section class="demo__arena" aria-label="Demonstração de loading e skeleton">
   <app-form-group titulo="Loading / Skeleton"
     subtitulo="Skeletons durante o carregamento (conteúdo em alternância)."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -10,7 +10,7 @@
           <p class="demo-loading__p">Com <code>loading=true</code> a grade real não é montada; vê-se o skeleton
             tabular. Ao mudar de página na paginação, esta demo liga <code>(paginationChanged)</code> a um estado de
             carregamento com o mesmo atraso simulado.</p>
-          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
             <app-form-col [xs]="12">
               <app-data-grid [rows]="todasPessoas" [columns]="gridColumns" [pageSize]="10" [pagination]="true"
                 height="min(16rem, 42vh)" [loading]="gridLoading" [initialPaginationPage]="gridRestorePage"
@@ -23,7 +23,7 @@
           <p class="demo-loading__p">Modo <code>remote</code>: ao chegar ao fim do scroll dispara <code>loadMore</code>.
             <code>loading</code> com lista vazia = skeleton em toda a área (inicial). <code>loadingMore</code> com itens
             já carregados = skeleton só no fundo, sem repor o scroll.</p>
-          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
             <app-form-col [xs]="12">
               <app-card-list [items]="cardItems" [mapItem]="mapPessoaCard" dataMode="remote"
                 [totalCountRemote]="cardListTotal" [hasNextPage]="cardListHasNext" (loadMore)="onCardListLoadMore()"
@@ -39,7 +39,7 @@
             grade, lista de
             cartões e todos os campos abaixo entram em <code>loading</code> / <code>optionsLoading</code> (e paginação
             onde aplicável), como no grupo Campos da demo principal.</p>
-          <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+          <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
             <app-form-col [xs]="12">
               <app-dropdown-search-field formControlName="estadoBusca" id="demo-skel-estado-busca"
                 name="demoSkelEstadoBusca" label="Estado (pesquisa)" [options]="estadoBuscaOpts"
@@ -118,10 +118,10 @@
               </div>
             </app-form-col>
             <app-form-col [xs]="12">
-              <app-base-button [type]="BaseButtonType.Button" [fullWidth]="true" [disabled]="simulacaoEmCurso"
+              <app-button [type]="BaseButtonType.Button" [fullWidth]="true" [disabled]="simulacaoEmCurso"
                 (click)="simularCarregamento()">
                 Simular carregamento
-              </app-base-button>
+              </app-button>
             </app-form-col>
           </app-form-row>
         </div>

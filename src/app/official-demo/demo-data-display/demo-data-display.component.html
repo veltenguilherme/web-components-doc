@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração Data Display">
+﻿<section class="demo__arena" aria-label="Demonstração Data Display">
   <app-form-group titulo="Data Display"
     subtitulo="Listas, linhas, seções de painel, badges e cartões de métricas."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -11,7 +11,7 @@
       </p>
 
       <app-dashboard-section title="Painel de vendas" subtitle="Indicadores do período atual.">
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [sm]="6" [md]="4">
             <app-stat-card title="Faturamento" value="€ 48.200" description="vs mês anterior" delta="+6%"
               deltaTone="positive" icon="fa-solid fa-euro-sign" />
@@ -28,11 +28,11 @@
       </app-dashboard-section>
 
       <app-dashboard-section title="Pedidos recentes" subtitle="Lista com estado e menu de ações.">
-        <app-base-button dashboard-section-actions [type]="BaseButtonType.Button"
+        <app-button dashboard-section-actions [type]="BaseButtonType.Button"
           [variant]="BaseButtonVariant.Secondary" [fullWidth]="false"
           (click)="lastListMenu = 'exportar: pedidos (demo)'">
           Exportar CSV
-        </app-base-button>
+        </app-button>
         <app-data-list [loading]="false" [empty]="false">
           @for (p of pedidosRecentes; track p.id) {
           <app-list-item [title]="p.titulo" [subtitle]="p.subtitulo + ' · ' + p.meta">
@@ -120,7 +120,7 @@
       </article>
 
       <h3 class="demo-data-display__section-title">Etapa 1 — Stat card (métricas)</h3>
-      <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+      <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
         <app-form-col [xs]="12" [md]="4">
           <app-stat-card title="Faturamento" value="R$ 12.450" description="vs mês anterior" delta="+12%"
             deltaTone="positive" icon="fa-solid fa-brazilian-real-sign" />

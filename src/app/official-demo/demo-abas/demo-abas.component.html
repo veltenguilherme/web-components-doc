@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de abas com formulário">
+﻿<section class="demo__arena" aria-label="Demonstração de abas com formulário">
   <app-form-group titulo="Abas"
     subtitulo="Formulário em separadores, com validação e estado entre abas."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -16,7 +16,7 @@
                 formGroupPath="identificacao.contato" [uxSubmittedPass]="formSubmitAttempted"
                 [collapsible]="true" [collapsed]="false">
                 <div formGroupName="contato">
-                  <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                  <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                     <app-form-col [xs]="12" [md]="6">
                       <app-text-field formControlName="nome" id="demo-abas-nome" name="abasNome" label="Nome completo"
                         [required]="true" [showErrorMessage]="true" [errorMessage]="strMensagemErroNomeCompleto"
@@ -36,7 +36,7 @@
                 formGroupPath="identificacao.perfil" [uxSubmittedPass]="formSubmitAttempted"
                 [collapsible]="true" [collapsed]="false">
                 <div formGroupName="perfil">
-                  <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                  <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                     <app-form-col [xs]="12" [md]="6">
                       <app-text-field formControlName="cargo" id="demo-abas-cargo" name="abasCargo" label="Cargo"
                         [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-briefcase"
@@ -57,7 +57,7 @@
             <app-form-group titulo="Preferências" subtitulo="Aceite e prioridade numérica." formGroupPath="preferencias"
               [uxSubmittedPass]="formSubmitAttempted" [collapsible]="true" [collapsed]="false">
               <div formGroupName="preferencias">
-                <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                   <app-form-col [xs]="12" [md]="6">
                     <app-checkbox-field formControlName="aceite" id="demo-abas-aceite" name="abasAceite"
                       label="Li e aceito as condições" [required]="true" />
@@ -76,7 +76,7 @@
             <app-form-group titulo="Complemento" subtitulo="Observações e contato." formGroupPath="complemento"
               [uxSubmittedPass]="formSubmitAttempted" [collapsible]="true" [collapsed]="false">
               <div formGroupName="complemento">
-                <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+                <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
                   <app-form-col [xs]="12" [md]="6">
                     <app-phone-field formControlName="telefone" id="demo-abas-telefone" name="abasTelefone"
                       label="Telefone" [required]="true" [showPrefixIcon]="true" prefixIcon="fa-solid fa-phone" />
@@ -92,12 +92,12 @@
           </app-form-tab>
         </app-form-tabs>
 
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12">
             <app-layout-stack [stackDivider]="true" [align]="LayoutStackAlign.End">
-              <app-base-button [type]="BaseButtonType.Submit" [fullWidth]="true">
+              <app-button [type]="BaseButtonType.Submit" [fullWidth]="true">
                 Validar
-              </app-base-button>
+              </app-button>
             </app-layout-stack>
           </app-form-col>
         </app-form-row>

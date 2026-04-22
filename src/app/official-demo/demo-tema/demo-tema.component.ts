@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  BaseButtonComponent,
+  ButtonComponent,
   BaseButtonType,
   BaseButtonVariant,
 } from 'structra-ui';
@@ -36,7 +36,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   FormTabComponent,
   FormTabsComponent,
 } from 'structra-ui';
@@ -54,7 +54,7 @@ import {
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    BaseButtonComponent,
+    ButtonComponent,
     FormGroupComponent,
     FormRowComponent,
     FormColComponent,
@@ -81,7 +81,7 @@ export class DemoTemaComponent implements OnInit {
 
   readonly BaseButtonType = BaseButtonType;
   readonly BaseButtonVariant = BaseButtonVariant;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly FormActionsAlign = FormActionsAlign;
 

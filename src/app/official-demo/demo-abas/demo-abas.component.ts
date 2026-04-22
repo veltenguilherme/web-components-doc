@@ -1,4 +1,4 @@
-import { JsonPipe } from '@angular/common';
+﻿import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -11,7 +11,7 @@ import {
   inject,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import { CheckboxFieldComponent } from 'structra-ui';
 import {
   IntegerFieldComponent,
@@ -25,7 +25,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   FormTabComponent,
   FormTabsComponent,
   LayoutStackAlign,
@@ -72,7 +72,7 @@ const ABAS_FIELD_META = {
     IntegerFieldComponent,
     PhoneFieldComponent,
     CheckboxFieldComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     LayoutStackComponent,
     FormColComponent,
     FormGroupComponent,
@@ -95,7 +95,7 @@ export class DemoAbasComponent implements OnInit {
 
   readonly BaseButtonType = BaseButtonType;
   readonly LayoutStackAlign = LayoutStackAlign;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
 
   /** Mensagem de erro visível no campo (com `[showErrorMessage]="true"`). */

@@ -1,4 +1,4 @@
-<section class="demo__arena" aria-label="Demonstração de diálogos e notificações">
+﻿<section class="demo__arena" aria-label="Demonstração de diálogos e notificações">
   <app-form-group
     titulo="Dialogs &amp; Notifications"
     subtitulo="Modais de confirmação e carregamento, diálogo declarativo e toasts no canto."
@@ -8,7 +8,7 @@
     (collapsedChange)="onCollapsedChange($event)"
   >
     <div class="demo__arena-body demo-dialogs-notifications__body">
-      <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+      <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
         <app-form-col [xs]="12" [md]="4">
           <div class="demo-dialogs-notifications__panel-wrap">
           <article
@@ -21,13 +21,13 @@
               corpo com scroll e rodapé com <code>appDialogFooter</code>.
             </p>
             <div class="demo-dialogs-notifications__row">
-              <app-base-button
+              <app-button
                 [type]="BaseButtonType.Button"
                 [variant]="BaseButtonVariant.Primary"
                 (click)="openDialog()"
               >
                 Abrir dialog
-              </app-base-button>
+              </app-button>
             </div>
 
             <app-dialog
@@ -45,21 +45,21 @@
                 dignissim sit amet, adipiscing nec, ultricies sed, dolor.
               </p>
               <ng-container appDialogFooter>
-                <app-base-button
+                <app-button
                   [type]="BaseButtonType.Button"
                   [variant]="BaseButtonVariant.Secondary"
                   [fullWidth]="false"
                   (click)="dialogOpen = false"
                 >
                   Cancelar
-                </app-base-button>
-                <app-base-button
+                </app-button>
+                <app-button
                   [type]="BaseButtonType.Button"
                   [variant]="BaseButtonVariant.Primary"
                   [fullWidth]="false"
                 >
                   Salvar
-                </app-base-button>
+                </app-button>
               </ng-container>
             </app-dialog>
           </article>
@@ -79,13 +79,13 @@
               <code>danger</code>.
             </p>
             <div class="demo-dialogs-notifications__row">
-              <app-base-button
+              <app-button
                 [type]="BaseButtonType.Button"
                 [variant]="BaseButtonVariant.Primary"
                 (click)="onDeleteClick()"
               >
                 Excluir (confirmação)
-              </app-base-button>
+              </app-button>
             </div>
             @if (lastConfirmResult) {
               <p class="demo-dialogs-notifications__result" role="status">{{ lastConfirmResult }}</p>
@@ -108,13 +108,13 @@
               backdrop — só <code>ref.close()</code> após a tarefa assíncrona.
             </p>
             <div class="demo-dialogs-notifications__row">
-              <app-base-button
+              <app-button
                 [type]="BaseButtonType.Button"
                 [variant]="BaseButtonVariant.Primary"
                 (click)="onLoadingDemoClick()"
               >
                 Mostrar loading (~1,5s)
-              </app-base-button>
+              </app-button>
             </div>
           </article>
           </div>
@@ -127,52 +127,52 @@
           Pilha no canto superior direito (<code>--app-z-toast</code>); animação de entrada/saída; vários
           simultâneos.
         </p>
-        <app-form-row [gap]="FormRowGap.Md" [align]="FormRowAlign.Stretch">
+        <app-form-row [gap]="FormLayoutGap.Md" [align]="FormRowAlign.Stretch">
           <app-form-col [xs]="12" [sm]="6" [md]="3">
-            <app-base-button
+            <app-button
               [type]="BaseButtonType.Button"
               [variant]="BaseButtonVariant.Secondary"
               (click)="showSuccess()"
             >
               Sucesso
-            </app-base-button>
+            </app-button>
           </app-form-col>
           <app-form-col [xs]="12" [sm]="6" [md]="3">
-            <app-base-button
+            <app-button
               [type]="BaseButtonType.Button"
               [variant]="BaseButtonVariant.Secondary"
               (click)="showError()"
             >
               Erro
-            </app-base-button>
+            </app-button>
           </app-form-col>
           <app-form-col [xs]="12" [sm]="6" [md]="3">
-            <app-base-button
+            <app-button
               [type]="BaseButtonType.Button"
               [variant]="BaseButtonVariant.Secondary"
               (click)="showWarning()"
             >
               Aviso
-            </app-base-button>
+            </app-button>
           </app-form-col>
           <app-form-col [xs]="12" [sm]="6" [md]="3">
-            <app-base-button
+            <app-button
               [type]="BaseButtonType.Button"
               [variant]="BaseButtonVariant.Secondary"
               (click)="showInfo()"
             >
               Info + ação
-            </app-base-button>
+            </app-button>
           </app-form-col>
         </app-form-row>
         <div class="demo-dialogs-notifications__row demo-dialogs-notifications__row--spaced">
-          <app-base-button
+          <app-button
             [type]="BaseButtonType.Button"
             [variant]="BaseButtonVariant.Primary"
             (click)="showMany()"
           >
             Vários toasts (pilha)
-          </app-base-button>
+          </app-button>
         </div>
       </article>
     </div>

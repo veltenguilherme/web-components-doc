@@ -1,4 +1,4 @@
-import { JsonPipe, NgTemplateOutlet } from '@angular/common';
+﻿import { JsonPipe, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -40,7 +40,7 @@ import {
   type DropdownSearchPageRequested,
   type SelectPageRequested,
 } from 'structra-ui';
-import { BaseButtonComponent, BaseButtonType } from 'structra-ui';
+import { ButtonComponent, BaseButtonType } from 'structra-ui';
 import {
   LayoutStackAlign,
   LayoutStackComponent,
@@ -48,7 +48,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
   FormRowJustify,
 } from 'structra-ui';
 import { LayoutGrupo } from '../_enums/layout-grupo.enum';
@@ -79,7 +79,7 @@ import { atLeastOneInArray } from '../_utils/demo-form-validators';
     SelectFieldComponent,
     MultiselectFieldComponent,
     DropdownSearchFieldComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     LayoutStackComponent,
     FormGroupComponent,
     FormRowComponent,
@@ -105,7 +105,7 @@ export class DemoGruposComponent {
   readonly LayoutClienteField = LayoutClienteField;
   readonly LayoutUsuarioField = LayoutUsuarioField;
   readonly BaseButtonType = BaseButtonType;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly FormRowJustify = FormRowJustify;
   readonly LayoutStackAlign = LayoutStackAlign;

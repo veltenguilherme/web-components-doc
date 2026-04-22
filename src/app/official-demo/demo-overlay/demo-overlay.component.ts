@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import {
-  BaseButtonComponent,
+  ButtonComponent,
   BaseButtonType,
   BaseButtonVariant,
 } from 'structra-ui';
@@ -24,7 +24,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
 } from 'structra-ui';
 
 @Component({
@@ -34,7 +34,7 @@ import {
     FormGroupComponent,
     FormRowComponent,
     FormColComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     TooltipComponent,
     TooltipPanelTemplateDirective,
     PopoverComponent,
@@ -52,7 +52,7 @@ export class DemoOverlayComponent {
 
   readonly BaseButtonType = BaseButtonType;
   readonly BaseButtonVariant = BaseButtonVariant;
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly OverlayPlacement = OverlayPlacement;
 

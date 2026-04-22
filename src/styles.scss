@@ -1,10 +1,15 @@
 /**
- * Estilos específicos do site de documentação (não duplicar o tema da lib).
- * O tema StructraLab completo vem de `../web-components/src/styles.scss` em `angular.json`.
+ * Estilos do site de documentação (fundo, layout, tokens só para a doc).
+ * Tema global e ícones (Font Awesome embutido em `structra-ui.css`) vêm com o módulo npm
+ * (fesm + CSS), p.ex. via `ToastHostComponent` em `app.component` — sem `structra-ui.scss`
+ * nem CDN extra no `index.html`.
  */
 
+// O pacote `structra-ui` injeta `structra-ui.css` depois dos `styles` globais e aplica
+// `body{height:100%;overflow:hidden;…}`; sem estes reforços o site da doc fica sem scroll.
 html {
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   box-sizing: border-box;
 }
 
@@ -16,14 +21,20 @@ body {
 
 body {
   min-height: 100%;
+  height: auto !important;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto !important;
   box-sizing: border-box;
   --doc-bg: #f6f8fb;
   --doc-text: #152433;
   --doc-muted: #4a5d72;
   --doc-border: #dfe6ef;
   --doc-accent: #1e5a96;
+}
+
+app-root {
+  display: block;
+  min-height: 0;
 }
 
 *,

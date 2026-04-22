@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BaseButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
+﻿import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
 import {
   DataListComponent,
   DashboardSectionComponent,
@@ -16,7 +16,7 @@ import {
   FormGroupComponent,
   FormRowAlign,
   FormRowComponent,
-  FormRowGap,
+  FormLayoutGap,
 } from 'structra-ui';
 import { ActionMenuComponent, type MenuNodeItem } from 'structra-ui';
 
@@ -36,7 +36,7 @@ export interface DemoPedidoListRow {
     FormGroupComponent,
     FormRowComponent,
     FormColComponent,
-    BaseButtonComponent,
+    ButtonComponent,
     StatusBadgeComponent,
     DetailsViewComponent,
     DetailsFieldComponent,
@@ -53,7 +53,7 @@ export class DemoDataDisplayComponent {
   @Input({ required: true }) collapsed!: boolean;
   @Output() readonly collapsedChange = new EventEmitter<boolean>();
 
-  readonly FormRowGap = FormRowGap;
+  readonly FormLayoutGap = FormLayoutGap;
   readonly FormRowAlign = FormRowAlign;
   readonly BaseButtonType = BaseButtonType;
   readonly BaseButtonVariant = BaseButtonVariant;
