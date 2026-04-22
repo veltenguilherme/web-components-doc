@@ -22,12 +22,6 @@ npm update structra-ui
 npm install structra-ui
 ```
 
-Com **grid (AG Grid)**:
-
-```bash
-npm install structra-ui ag-grid-community ag-grid-angular
-```
-
 ## AG Grid
 
 Registre os módulos Community **uma vez** no `main.ts` (antes do `bootstrapApplication`):
