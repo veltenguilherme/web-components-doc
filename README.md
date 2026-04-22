@@ -6,14 +6,14 @@ Site **Angular 21** que funciona como **showcase** da biblioteca [**structra-ui*
 
 ## Compatibilidade
 
-- **Angular 21** — alinhado aos **peer dependencies** actuais de `structra-ui` (pacotes `@angular/*` na linha **21.2.7**; ver o `package.json` do pacote no npm). Não há suporte para Angular 22.
+- **Angular 21** — alinhado aos **peer dependencies** atuais de `structra-ui` (pacotes `@angular/*` na linha **21.2.7**; ver o `package.json` do pacote no npm). Não há suporte para Angular 22.
 - **AG Grid:** se a demo usar grades, siga a linha indicada nos peers da lib (hoje **35.x**).
 
 ## Histórico de versões (resumo)
 
-| Época | `structra-ui` (npm) | Angular |
+| Período | `structra-ui` (npm) | Angular |
 |--------|----------------------|---------|
-| Série actual | conforme `package.json` deste repo | **21** |
+| Série atual | conforme `package.json` deste repositório | **21** |
 | Séries antigas | versões mais antigas no npm | **17** (legado) |
 
 Para listar todas as versões publicadas: `npm view structra-ui versions`. Notas por release: separador **Versions** / changelog no [npm](https://www.npmjs.com/package/structra-ui).
@@ -74,4 +74,4 @@ src/
 
 ## Licença
 
-MIT, alinhada ao ecossistema Structra quando aplicável.
+MIT, alinhado ao ecossistema Structra quando aplicável.
