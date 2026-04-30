@@ -14,7 +14,7 @@
 
       <app-form-section class="demo-form-exemplo__stack-fill" titulo="Cadastro"
         subtitulo="Exemplo em memória; o «…» nos campos abre menus como na demo Menus."
-        [withDivider]="true">
+        [divider]="true">
         <app-form-group titulo="Identificação e contato principal" subtitulo="Dados cadastrais e canal principal."
           [collapsible]="true" [foldable]="true" [disabled]="clienteSalvarLoading" [collapsed]="false"
           [showDivider]="true" [groupInvalid]="grupoIdentificacaoContatoPrincipalInvalido()">
@@ -339,7 +339,7 @@
 
       <app-form-section class="demo-form-exemplo__stack-fill demo-form-exemplo__consulta-pos-cadastro" titulo="Consulta"
         subtitulo="Registros desta sessão; editar reabre o cadastro acima."
-        [withDivider]="true">
+        [divider]="true">
         <div formGroupName="consultaCadastros">
           <app-data-toolbar>
             <div toolbar-start class="demo-form-exemplo__toolbar">

@@ -7,7 +7,6 @@ import { ToastHostComponent } from 'structra-ui';
   standalone: true,
   imports: [RouterOutlet, ToastHostComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {

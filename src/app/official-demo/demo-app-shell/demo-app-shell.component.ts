@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -9,20 +9,19 @@ import {
   AppBreadcrumbComponent,
   AppShellComponent,
   AppShellSidebarTemplateDirective,
+  AppSidebarBrandDirective,
   AppSidebarComponent,
   AppShellSidebarToggleComponent,
   AppSidebarToolbarDirective,
   AppTopbarComponent,
   AppUserMenuComponent,
-  type BreadcrumbItem,
-} from 'structra-ui';
-import { ButtonComponent, BaseButtonType, BaseButtonVariant } from 'structra-ui';
-import {
+  ButtonComponent,
   FormGroupComponent,
-  LayoutStackComponent,
   LayoutStackAlign,
+  LayoutStackComponent,
+  type BreadcrumbItem,
+  type MenuNodeItem,
 } from 'structra-ui';
-import type { MenuNodeItem } from 'structra-ui';
 
 @Component({
   selector: 'app-demo-app-shell',
@@ -31,6 +30,7 @@ import type { MenuNodeItem } from 'structra-ui';
     FormGroupComponent,
     AppShellComponent,
     AppShellSidebarTemplateDirective,
+    AppSidebarBrandDirective,
     AppSidebarComponent,
     AppShellSidebarToggleComponent,
     AppSidebarToolbarDirective,
@@ -47,9 +47,6 @@ import type { MenuNodeItem } from 'structra-ui';
 export class DemoAppShellComponent {
   @Input({ required: true }) collapsed!: boolean;
   @Output() readonly collapsedChange = new EventEmitter<boolean>();
-
-  readonly BaseButtonType = BaseButtonType;
-  readonly BaseButtonVariant = BaseButtonVariant;
   readonly LayoutStackAlign = LayoutStackAlign;
 
   sidebarCollapsed = false;
@@ -61,6 +58,7 @@ export class DemoAppShellComponent {
     {
       kind: 'group',
       label: 'Principal',
+      alwaysExpanded: true,
       items: [
         {
           kind: 'item',
@@ -73,6 +71,30 @@ export class DemoAppShellComponent {
           id: 'reports',
           label: 'Relatórios',
           icon: 'fa-solid fa-chart-line',
+        },
+        {
+          kind: 'item',
+          id: 'analytics',
+          label: 'Análises',
+          icon: 'fa-solid fa-chart-pie',
+        },
+        {
+          kind: 'item',
+          id: 'calendar',
+          label: 'Calendário',
+          icon: 'fa-solid fa-calendar-days',
+        },
+        {
+          kind: 'item',
+          id: 'messages',
+          label: 'Mensagens',
+          icon: 'fa-solid fa-envelope',
+        },
+        {
+          kind: 'item',
+          id: 'tasks',
+          label: 'Tarefas',
+          icon: 'fa-solid fa-list-check',
         },
       ],
     },
@@ -94,6 +116,94 @@ export class DemoAppShellComponent {
           id: 'orders',
           label: 'Pedidos',
           icon: 'fa-solid fa-file-invoice',
+        },
+        {
+          kind: 'item',
+          id: 'suppliers',
+          label: 'Fornecedores',
+          icon: 'fa-solid fa-truck-field',
+        },
+        {
+          kind: 'item',
+          id: 'inventory',
+          label: 'Inventário',
+          icon: 'fa-solid fa-boxes-stacked',
+        },
+        {
+          kind: 'item',
+          id: 'invoices',
+          label: 'Faturas',
+          icon: 'fa-solid fa-file-lines',
+        },
+      ],
+    },
+    { kind: 'divider' },
+    {
+      kind: 'submenu',
+      id: 'sub-support',
+      label: 'Suporte',
+      icon: 'fa-solid fa-life-ring',
+      items: [
+        {
+          kind: 'item',
+          id: 'portal-cliente',
+          label: 'Portal do cliente',
+          icon: 'fa-solid fa-arrow-up-right-from-square',
+        },
+        {
+          kind: 'item',
+          id: 'tickets',
+          label: 'Pedidos de assistência',
+          icon: 'fa-solid fa-ticket',
+        },
+        {
+          kind: 'item',
+          id: 'kb',
+          label: 'Base de conhecimento',
+          icon: 'fa-solid fa-book',
+        },
+      ],
+    },
+    { kind: 'divider' },
+    {
+      kind: 'group',
+      label: 'Administração',
+      items: [
+        {
+          kind: 'item',
+          id: 'users',
+          label: 'Utilizadores',
+          icon: 'fa-solid fa-user-group',
+        },
+        {
+          kind: 'item',
+          id: 'roles',
+          label: 'Funções e permissões',
+          icon: 'fa-solid fa-user-shield',
+        },
+        {
+          kind: 'item',
+          id: 'audit',
+          label: 'Auditoria',
+          icon: 'fa-solid fa-clipboard-list',
+        },
+        {
+          kind: 'item',
+          id: 'integrations',
+          label: 'Integrações',
+          icon: 'fa-solid fa-plug',
+        },
+        {
+          kind: 'item',
+          id: 'notifications',
+          label: 'Notificações',
+          icon: 'fa-solid fa-bell',
+        },
+        {
+          kind: 'item',
+          id: 'backup',
+          label: 'Cópias de segurança',
+          icon: 'fa-solid fa-database',
         },
       ],
     },

@@ -1,4 +1,4 @@
-﻿<section class="demo__arena" aria-label="Demonstração App Shell e navegação">
+<section class="demo__arena" aria-label="Demonstração App Shell e navegação">
   <app-form-group titulo="App Shell &amp; navegação"
     subtitulo="Layout com barra lateral, topo e migalhas. No celular o menu abre num painel lateral."
     [collapsible]="true" [skipBodyChildStacking]="true" [collapsed]="collapsed"
@@ -19,7 +19,9 @@
           class="demo-app-shell__shell">
           <ng-template appShellSidebar>
             <app-sidebar [items]="shellNavItems" [selectedItemId]="shellActiveNav" [collapsed]="sidebarCollapsed"
-              menuId="demo-shell-nav" (itemSelect)="onShellNav($event)">
+              [searchable]="true"
+              groupDefaultExpansion="first" menuId="demo-shell-nav" (itemSelect)="onShellNav($event)">
+              <span appSidebarBrand class="demo-app-shell__sidebar-brand">Structra</span>
               <app-shell-sidebar-toggle
                 appSidebarToolbar
                 class="demo-app-shell__sidebar-collapse"
@@ -34,7 +36,7 @@
           <div appShellTopbar>
             <app-topbar>
               <app-layout-stack appTopbarStart [align]="LayoutStackAlign.Start" [stackFill]="false">
-                <app-button [type]="BaseButtonType.Button" [variant]="BaseButtonVariant.Secondary"
+                <app-button type="button" variant="secondary"
                   class="demo-app-shell__menu-btn" [attr.aria-expanded]="mobileNavOpen"
                   aria-label="Abrir ou fechar navegação" (click)="shellRef.toggleMobileNav()">
                   <i class="fa-solid fa-bars" aria-hidden="true"></i>
@@ -60,7 +62,9 @@
               </p>
               <p>
                 O menu do usuário reutiliza <code>app-dropdown-menu</code>; a sidebar reutiliza
-                <code>app-menu-list</code> com grupos e submenu.
+                <code>app-menu-list</code> com grupos e submenus. Para testar a pesquisa com <strong>mais de um
+                submenu</strong> com resultados, experimente <kbd>cliente</kbd> (entradas em «Registros» e
+                «Suporte») ou <kbd>pedido</kbd> («Pedidos» e «Pedidos de assistência»).
               </p>
             </div>
           </div>
